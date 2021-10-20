@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMarketShop.Views.ProfilePage"
+             BackgroundColor="#F5F5F8">
+    <ContentPage.Content>
+        <!--Vista de desplazamiento-->
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" 
+                  Padding="30,40">
+                <!--Regresar-->
+                <Image Grid.Row="0"
+                       Source="ArrowBack.png"
+                       Margin="0,0,0,20"
+                       HorizontalOptions="Start"/>
+                <!--Titulo-->
+                <Label Grid.Row="1"
+                       Text="My profile"
+                       FontSize="36"
+                       Margin="0,0,0,30"
+                       FontAttributes="Bold"
+                       TextColor="Black"/>
+                <!--Datos de Usuario-->
+                <Frame Grid.Row="2"
+                       HeightRequest="170"
+                       WidthRequest="270"
+                       CornerRadius="20"
+                       IsClippedToBounds="True"
+                       Margin="0,0,0,15">
+                    <Grid RowDefinitions="Auto,Auto,Auto">
+                        <!--Imagen usuario-->
+                        <Frame Grid.Row="0"
+                               HeightRequest="100"
+                               WidthRequest="100" 
+                               HasShadow="False" 
+                               CornerRadius="50" 
+                               Padding="0" 
+                               IsClippedToBounds="True"
+                               HorizontalOptions="Center">
+                            <Image Source="Profile.png"
+                                   Aspect="AspectFill"/>
+                        </Frame>
+                        <!--Nombre-->
+                        <Label Grid.Row="1"
+                               Text="Rosina Sanchez"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                                Margin="0,10,0,0"
+                               FontSize="18"/>
+                        <!--Correo-->
+                        <Label Grid.Row="2"
+                               Text="rosina@company.com"
+                               HorizontalTextAlignment="Center"
+                               FontSize="16"
+                               Margin="0,-5,0,0"/>
+                    </Grid>
+                </Frame>
+                <!--Editar perfil-->
+                <Frame Grid.Row="3"
+                       HeightRequest="60"
+                       WidthRequest="270"
+                       CornerRadius="20"
+                       IsClippedToBounds="True"
+                       Padding="0"
+                       Margin="0,0,0,15">
+                    <Grid ColumnDefinitions="Auto,Auto"
+                          Padding="20,0,20,0">
+                        <Label HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Text="Edit Profile"
+                               FontSize="17"
+                               FontAttributes="Bold"
+                               TextColor="Black"/>
+                        <Image Grid.Column="1"
+                               Grid.ColumnSpan="2"
+                               HorizontalOptions="End"
+                               Source="ChevronLeft.png"/>
+                    </Grid> 
+                </Frame>
+                <!--Dirección de compras-->
+                <Frame Grid.Row="4"
+                       HeightRequest="60"
+                       WidthRequest="270"
+                       CornerRadius="20"
+                       IsClippedToBounds="True"
+                       Padding="0"
+                       Margin="0,0,0,15">
+                    <Grid ColumnDefinitions="Auto,Auto"
+                          Padding="20,0,20,0">
+                        <Label HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Text="Shopping address"
+                               FontSize="17"
+                               FontAttributes="Bold"
+                               TextColor="Black"/>
+                        <Image Grid.Column="1"
+                               Grid.ColumnSpan="2"
+                               HorizontalOptions="End"
+                               Source="ChevronLeft.png"/>
+                    </Grid>
+                </Frame>
+                <!--Hisotiral de ordenes-->
+                <Frame Grid.Row="5"
+                       HeightRequest="60"
+                       WidthRequest="270"
+                       CornerRadius="20"
+                       IsClippedToBounds="True"
+                       Padding="0"
+                       Margin="0,0,0,15">
+                    <Grid ColumnDefinitions="Auto,Auto"
+                          Padding="20,0,20,0">
+                        <Label HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Text="Order history"
+                               FontSize="17"
+                               FontAttributes="Bold"
+                               TextColor="Black"/>
+                        <Image Grid.Column="1"
+                               Grid.ColumnSpan="2"
+                               HorizontalOptions="End"
+                               Source="ChevronLeft.png"/>
+                    </Grid>
+                </Frame>
+                <!--Tarjetas-->
+                <Frame Grid.Row="6"
+                       HeightRequest="60"
+                       WidthRequest="270"
+                       CornerRadius="20"
+                       IsClippedToBounds="True"
+                       Padding="0"
+                      Margin="0,0,0,40">
+                    <Grid ColumnDefinitions="Auto,Auto"
+                          Padding="20,0,20,0">
+                        <Label HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Text="Cards"
+                               FontSize="17"
+                               FontAttributes="Bold"
+                               TextColor="Black"/>
+                        <Image Grid.Column="1"
+                               Grid.ColumnSpan="2"
+                               HorizontalOptions="End"
+                               Source="ChevronLeft.png"/>
+                    </Grid>
+                </Frame>
+                <!--Boton cerrar sesion-->
+                <Button Grid.Row="7"
+                        Text="Sign out"
+                        BackgroundColor="#EA1212"
+                        TextColor="White"
+                        WidthRequest="200"
+                        HeightRequest="55"
+                        CornerRadius="10"
+                        HorizontalOptions="Center"
+                       Margin="0"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

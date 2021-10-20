@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="http://rotorgames.com" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMarketShop.Views.PopupPaymentPage">
+    <ContentPage.Content>
+        <!--Diseño principal-->
+        <StackLayout VerticalOptions="EndAndExpand"
+                     HorizontalOptions="FillAndExpand">
+            <!--Ventana Payment-->
+            <Frame CornerRadius="20"  
+                   HorizontalOptions="FillAndExpand" 
+                   HeightRequest="480"
+                   Padding="0">
+                <!--Grid con 4 filas-->
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+                      Margin="40,40">
+                    <Label Grid.Row="0" 
+                           Text="Confirm and pay"
+                           TextColor="Black"
+                           FontSize="17"
+                           FontAttributes="Bold"/>
+                    <Label Grid.Row="0" 
+                           Grid.ColumnSpan="2"
+                           Margin="0,0,0,30"
+                           HorizontalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Products: " 
+                                  FontSize="15" 
+                                  TextColor="Black"/>
+                                <Span Text="2"
+                                  FontSize="15" 
+                                  FontAttributes="Bold" 
+                                  TextColor="Black"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!--Tarjeta-->
+                    <Frame Grid.Row="1"
+                           Grid.ColumnSpan="2"
+                           HorizontalOptions="FillAndExpand"
+                           HeightRequest="170"
+                           BackgroundColor="#F4F6FA"
+                           HasShadow="False"
+                           Padding="0"
+                           CornerRadius="10"
+                           BorderColor="#D6D9E0">
+                        <Grid RowDefinitions="Auto,Auto,Auto"
+                              Margin="17,12">
+                            <Label Grid.Row="0" 
+                                   Text="My credit card"
+                                   TextColor="Black"
+                                   FontSize="16"
+                                   Margin="0,10,0,0"/>
+                            <Image Grid.Row="0"
+                                   Grid.ColumnSpan="2"
+                                   Source="AgoraCart.png"
+                                   HorizontalOptions="End"/>
+                            <Label Grid.Row="1" 
+                                   Grid.ColumnSpan="2"
+                                   Margin="0,10"
+                                   HorizontalOptions="Start">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="**** **** **** " 
+                                          FontSize="30" 
+                                          TextColor="Black"/>
+                                        <Span Text="1234"
+                                          FontSize="30" 
+                                          TextColor="Black"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Row="2" 
+                                   Text="Rosa Nades"
+                                   FontSize="15"
+                                   Margin="0,0,0,0"/>
+                            <Label Grid.Row="2" 
+                                   Text="04/26"
+                                   Grid.ColumnSpan="2"
+                                   FontSize="15"
+                                   HorizontalOptions="End"/>
+                        </Grid>
+                    </Frame>
+                    <!--Total a pagar-->
+                    <Label Grid.Row="2"
+                       Grid.ColumnSpan="2"
+                       Margin="0,30"
+                       Text="Total"
+                       FontSize="18"
+                       TextColor="Black"/>
+                    <!--Precio-->
+                    <Label Grid.Row="2" 
+                       Grid.ColumnSpan="2"
+                       Margin="0,20"
+                       HorizontalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="S/" 
+                                  FontSize="22" 
+                                  FontAttributes="Bold" 
+                                  TextColor="#512DA8"/>
+                                <Span Text="954"
+                                  FontSize="22" 
+                                  FontAttributes="Bold" 
+                                  TextColor="#512DA8"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!--Boton pagar ahora-->
+                    <Button Grid.Row="3"
+                        Grid.ColumnSpan="2"
+                        Text="Pay now"
+                        BackgroundColor="#512DA8"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HorizontalOptions="FillAndExpand"
+                        HeightRequest="65"
+                        Margin="0"/>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

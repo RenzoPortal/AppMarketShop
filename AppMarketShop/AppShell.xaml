@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+       xmlns:local="clr-namespace:AppMarketShop.Views"
+       x:Class="AppMarketShop.AppShell"
+       Shell.NavBarIsVisible="False">
+    <!--Definimos recursos-->
+    <Shell.Resources>
+        <!--Dicionario recursos-->
+        <ResourceDictionary>
+            <!--Colores del TabBar-->
+            <Color x:Key="ThemeColor">#F5F5F8</Color>
+            <Color x:Key="Primary">#512DA8</Color>
+            <Color x:Key="IconColors">#200E32</Color>
+            <!--Estilo para el TabBar-->
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource ThemeColor}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource IconColors}" />
+            </Style>
+            <!--Utilizamos el estilo-->
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar"/>
+        </ResourceDictionary>
+    </Shell.Resources>
+    <!--Menu TabBar Shell-->
+    <TabBar>
+        <!--Definimos el Tab y nos llevara al HomePage-->
+        <Tab Icon="Home.png">
+            <ShellContent>
+                <local:HomePage/>
+            </ShellContent>
+        </Tab>
+        <!--Definimos el Tab y nos llevara al HeartPage-->
+        <Tab Icon="Heart.png">
+            <ShellContent>
+                <local:FavoritePage/>
+            </ShellContent>
+        </Tab>
+        <!--Definimos el Tab y nos llevara al ProfilePage-->
+        <Tab Icon="User.png">
+            <ShellContent>
+                <local:ProfilePage/>
+            </ShellContent>
+        </Tab>
+        <!--Definimos el Tab y nos llevara al CartPage-->
+        <Tab Icon="Cart.png">
+            <ShellContent>
+                <local:CartPage/>
+            </ShellContent>
+        </Tab>
+    </TabBar>
+</Shell>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:autocomlete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             x:Class="AppMarketShop.Views.SearchPage"
+             BackgroundColor="#F5F5F8">
+    <ContentPage.Content>
+        <!--Definimos el Grid con 3 filas y 2 columnas-->
+        <Grid RowDefinitions="Auto,Auto,Auto" 
+              ColumnDefinitions="Auto,Auto"
+              Padding="30,40,30,0">
+            <!--Regresar-->
+            <Image Grid.Row="0"
+                   Source="ArrowBack.png"
+                   HorizontalOptions="Start"/>
+            <!--Buscador usando SfAutoComplete-->
+            <Frame Grid.Row="0"
+                   Grid.Column="1"
+                   Padding="0"
+                   HeightRequest="55"
+                   WidthRequest="330"
+                   CornerRadius="30"
+                   BackgroundColor="White"
+                   HorizontalOptions="Start">
+                <Grid ColumnDefinitions="Auto,Auto"
+                          Margin="20,0">
+                    <Image HeightRequest="20" 
+                               WidthRequest="20" 
+                               Source="Search.png"/>
+                    <autocomlete:SfAutoComplete Grid.Column="1" 
+                                                Grid.ColumnSpan="2"
+                                                Margin="5"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="Center"
+                                                Watermark="Search"
+                                                ShowBorder="False"/>
+                </Grid>
+            </Frame>
+            <!--Resultado de Busqueda-->
+            <Label Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Text="Found  4 results"
+                   TextColor="Black"
+                   FontSize="28"
+                   HorizontalTextAlignment="Center"
+                   Padding="0,35,0,20"/>
+            <!--Lista de productos-->
+            <CollectionView Grid.Column="0" 
+                            Grid.Row="2" 
+                            Grid.ColumnSpan="2"
+                            VerticalScrollBarVisibility="Never" 
+                            ItemsSource="{Binding searchproducts}"
+                            VerticalOptions="StartAndExpand">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="12">
+                            <Frame WidthRequest="156"
+                                   HeightRequest="263"
+                                   CornerRadius="10"
+                                   HasShadow="False"
+                                   Padding="0">
+                                <Grid RowDefinitions="Auto,Auto,Auto">
+                                    <!--Imagenes de los productos-->
+                                    <Image Grid.Row="0"
+                                           Source="{Binding Image}"
+                                           Margin="5"/>
+                                    <!--Nombres de los productos-->
+                                    <Label Grid.Row="1" 
+                                           Text="{Binding Name}"
+                                           FontSize="22"
+                                           FontAttributes="Bold"
+                                           Margin="0,0,0,0"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"/>
+                                    <!--Precios de los productos-->
+                                    <Label Grid.Row="2"
+                                               HorizontalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="From S/" 
+                                                          FontSize="17" 
+                                                          FontAttributes="Bold" 
+                                                          TextColor="#5956E9"/>
+                                                <Span Text="{Binding Price}"
+                                                          FontSize="20" 
+                                                          FontAttributes="Bold" 
+                                                          TextColor="#5956E9"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

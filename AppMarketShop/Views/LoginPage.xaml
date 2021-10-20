@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMarketShop.Views.LoginPage"
+             BackgroundColor="#512DA8"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <!--Vista de desplazamiento-->
+        <ScrollView VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalScrollBarVisibility="Never">
+            <!--Grid con 2 filas-->
+            <Grid RowDefinitions="Auto,Auto">
+                <!--Titulo-->
+                <Label Grid.Row="0"
+                       Text="Bienvenido a Market Shop"
+                       FontSize="48"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       Padding="40,50,0,50"/>
+                <!--Inicio de sesión-->
+                <Frame Grid.Row="1"
+                       BackgroundColor="White"
+                       HeightRequest="485"
+                       CornerRadius="30">
+                    <!--Grid con 2 columnas y 8 filas-->
+                    <Grid ColumnDefinitions="*,Auto"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                        <!--Subtítulo-->
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Text="Login"
+                               TextColor="Black"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               Padding="20,14,0,30"/>
+                        <!--Diseño horizontal Email-->
+                        <StackLayout Grid.Column="0" 
+                                     Grid.ColumnSpan="2" 
+                                     Grid.Row="1" 
+                                     Orientation="Horizontal" 
+                                     Spacing="10"
+                                     Padding="20,0,0,0">
+                            <Image Source="Email.png" 
+                                   WidthRequest="24" 
+                                   HeightRequest="24"/>
+                            <Label FontSize="16"
+                                   Text="Email"/>
+                        </StackLayout>
+                        <!--Entrada de Email-->
+                        <Entry Grid.Row="2"
+                               Keyboard="Email"
+                               Margin="20,-15,20,30"
+                               FontAttributes="Bold"/>
+                        <!--Diseño horizontal Passwprd-->
+                        <StackLayout Grid.Column="0" 
+                                     Grid.ColumnSpan="2" 
+                                     Grid.Row="3" 
+                                     Orientation="Horizontal" 
+                                     Spacing="10"
+                                     Padding="20,0,0,0">
+                            <Image Source="Password.png" 
+                                   WidthRequest="24" 
+                                   HeightRequest="24"/>
+                            <Label FontSize="16"
+                                   Text="Password"/>
+                        </StackLayout>
+                        <!--Entrada de Password-->
+                        <Entry Grid.Row="4"
+                               IsPassword="True"
+                               Margin="20,-15,20,15"
+                               FontAttributes="Bold"/>
+                        <!--Olvido de contraseña-->
+                        <Label Grid.Row="5"
+                               Grid.Column="0"
+                               Text="Forgot passcode?"
+                               TextColor="#5956E9"
+                               FontSize="16"
+                               Padding="20,0,0,0"/>
+                        <!--Boton iniciar sesion-->
+                        <Button Grid.Row="6"
+                                Text="Login"
+                                BackgroundColor="#512DA8"
+                                TextColor="White"
+                                WidthRequest="314"
+                                HeightRequest="65"
+                                CornerRadius="10"
+                                HorizontalOptions="Center"
+                                Margin="0,30,0,15"/>
+                        <!--Registrarse-->
+                        <Label Grid.Row="7"
+                               Grid.Column="0"
+                               Text="Create account"
+                               TextColor="#5956E9"
+                               FontSize="16"
+                               HorizontalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Register_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Frame>
+                <!--Ocultar bordes inferiores-->
+                <Frame Grid.Row="7" Margin="0,-80">
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

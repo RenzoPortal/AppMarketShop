@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMarketShop.Views.MainPage"
+             BackgroundColor="#512DA8"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <!--Vista de desplazamiento-->
+        <ScrollView VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalScrollBarVisibility="Never">
+            <!--Grid con 3 filas-->
+            <Grid RowDefinitions="Auto,Auto,Auto">
+                <!--Titulo-->
+                <Label Grid.Row="0"
+                       Text="Encuentra tus Productos"
+                       FontSize="48"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       Padding="40,50,0,0"/>
+                <!--Imagen principal-->
+                <Image Grid.Row="1"
+                       Source="Market_Shop.png"
+                       WidthRequest="280"
+                       HeightRequest="280"
+                       HorizontalOptions="Center"
+                       Margin="40"/>
+                <!-- Boton continuar-->
+                <Button Grid.Row="2"
+                        x:Name="Next"
+                        Text="Get started"
+                        BackgroundColor="White"
+                        TextColor="#512DA8"
+                        Clicked="Next_Clicked"
+                        WidthRequest="314"
+                        HeightRequest="65"
+                        CornerRadius="10"
+                        HorizontalOptions="Center"
+                        Margin="0,50,0,0"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMarketShop.Views.OrdersPage"
+             BackgroundColor="#F5F5F8">
+    <ContentPage.Content>
+        <!--Grid con 5 filas y 2 columnas-->
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" 
+              ColumnDefinitions="Auto"
+              Padding="30,40">
+            <!--Regresar-->
+            <Image Grid.Row="0"
+                   Source="ArrowBack.png"
+                   HorizontalOptions="Start"/>
+            <!--Titulo-->
+            <Label Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Text="Order History"
+                   FontSize="20"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="CenterAndExpand"/>
+            <!--No hay ordenes-->
+            <Image Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Source="NoOrders.png"
+                   HorizontalOptions="Center"
+                   Margin="0,100,0,20"/>
+            <Label Grid.Row="2"
+                   Grid.ColumnSpan="2"
+                   Text="No history yet"
+                   TextColor="Black"
+                   FontSize="28"
+                   Padding="0"
+                   HorizontalTextAlignment="Center"/>
+            <!--Decripcion-->
+            <Label Grid.Row="3"
+                   Grid.ColumnSpan="2"
+                   Text="Hit the orange button down&#10;below to Create an order"
+                   FontSize="17"
+                   LineHeight="1.1"
+                   Padding="0,0,0,30"
+                   HorizontalTextAlignment="Center"/>
+            <!--Boton ordenar-->
+            <Button Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="Start ordering"
+                    BackgroundColor="#304FFE"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HorizontalOptions="Center"
+                    WidthRequest="224"
+                    HeightRequest="50"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
