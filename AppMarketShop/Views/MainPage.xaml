@@ -27,16 +27,15 @@
                        Margin="40"/>
                 <!-- Boton continuar-->
                 <Button Grid.Row="2"
-                        x:Name="Next"
                         Text="Get started"
                         BackgroundColor="White"
                         TextColor="#512DA8"
-                        Clicked="Next_Clicked"
                         WidthRequest="314"
                         HeightRequest="65"
                         CornerRadius="10"
                         HorizontalOptions="Center"
-                        Margin="0,50,0,0"/>
+                        Margin="0,50,0,0"
+                        Command="{Binding StartCommand}"/>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

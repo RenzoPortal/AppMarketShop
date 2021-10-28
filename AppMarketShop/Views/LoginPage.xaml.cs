@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppMarketShop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,7 @@ namespace AppMarketShop.Views
         public LoginPage()
         {
             InitializeComponent();
-        }
-        //Metodo para llevarme a el Registro de usuario
-        private async void Register_Tapped(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new RegisterPage());
+            BindingContext = new LoginViewModel();
         }
     }
 }

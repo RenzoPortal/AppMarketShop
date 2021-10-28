@@ -13,7 +13,7 @@
             <Grid RowDefinitions="Auto,Auto">
                 <!--Titulo-->
                 <Label Grid.Row="0"
-                       Text="Registrate a Market Shop"
+                       Text="Register in Market Shop"
                        FontSize="48"
                        FontAttributes="Bold"
                        TextColor="White"
@@ -69,7 +69,8 @@
                         <Entry Grid.Row="4"
                                IsPassword="True"
                                Margin="20,-15,20,30"
-                               FontAttributes="Bold"/>
+                               FontAttributes="Bold"
+                               Text="{Binding PasswordTxt}"/>
                         <!--Diseño horizontal Confirmar Passwprd-->
                         <StackLayout Grid.Column="0" 
                                      Grid.ColumnSpan="2" 
@@ -87,7 +88,8 @@
                         <Entry Grid.Row="6"
                                IsPassword="True"
                                Margin="20,-15,20,15"
-                               FontAttributes="Bold"/>
+                               FontAttributes="Bold"
+                               Text="{Binding ConPasswordTxt}"/>
                         <!--Boton registrar-->
                         <Button Grid.Row="7"
                                 Text="Register"
@@ -97,16 +99,17 @@
                                 HeightRequest="65"
                                 CornerRadius="10"
                                 HorizontalOptions="Center"
-                                Margin="0,30,0,15"/>
+                                Margin="0,30,0,15"
+                                Command="{Binding CreateUserCommand}"/>
                         <!--Iniciar sesion-->
                         <Label Grid.Row="8"
                                Grid.Column="0"
-                               Text="Login"
+                               Text="Back"
                                TextColor="#5956E9"
-                               FontSize="16"
+                               FontSize="17"
                                HorizontalTextAlignment="Center">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Login_Tapped"/>
+                                <TapGestureRecognizer  Command="{Binding BackCommand}"/>
                             </Label.GestureRecognizers>
                         </Label>
                     </Grid>

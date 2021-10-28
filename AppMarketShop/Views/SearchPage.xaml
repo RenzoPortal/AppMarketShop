@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:autocomlete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
              x:Class="AppMarketShop.Views.SearchPage"
-             BackgroundColor="#F5F5F8">
+             xmlns:renderers="clr-namespace:AppMarketShop.Renderers"
+             BackgroundColor="#F5F5F8"
+             NavigationPage.HasNavigationBar="False"
+             Shell.TabBarIsVisible="False">
     <ContentPage.Content>
         <!--Definimos el Grid con 3 filas y 2 columnas-->
         <Grid RowDefinitions="Auto,Auto,Auto" 
@@ -27,13 +29,13 @@
                     <Image HeightRequest="20" 
                                WidthRequest="20" 
                                Source="Search.png"/>
-                    <autocomlete:SfAutoComplete Grid.Column="1" 
-                                                Grid.ColumnSpan="2"
-                                                Margin="5"
-                                                HorizontalOptions="FillAndExpand"
-                                                VerticalOptions="Center"
-                                                Watermark="Search"
-                                                ShowBorder="False"/>
+                    <renderers:BorderlessEntry x:Name="SearchTxt" 
+                                               Grid.Column="1" 
+                                               Grid.ColumnSpan="2"
+                                               Margin="5"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="Center"
+                                               Placeholder="Search"/>
                 </Grid>
             </Frame>
             <!--Resultado de Busqueda-->
@@ -45,11 +47,14 @@
                    HorizontalTextAlignment="Center"
                    Padding="0,35,0,20"/>
             <!--Lista de productos-->
-            <CollectionView Grid.Column="0" 
+            <CollectionView x:Name="CollectionProduct" 
+                            Grid.Column="0" 
                             Grid.Row="2" 
                             Grid.ColumnSpan="2"
                             VerticalScrollBarVisibility="Never" 
-                            ItemsSource="{Binding searchproducts}"
+                            ItemsSource="{Binding Searchproduct}"
+                            SelectionMode="Single"
+                            SelectionChangedCommand="{Binding SelectionCommand}"
                             VerticalOptions="StartAndExpand">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
@@ -58,6 +63,16 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="12">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F5F5F8" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
                             <Frame WidthRequest="156"
                                    HeightRequest="263"
                                    CornerRadius="10"

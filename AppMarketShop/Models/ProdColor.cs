@@ -5,9 +5,11 @@ using System.Text;
 
 namespace AppMarketShop.Models
 {
-    public class ProductColor
+    public class ProdColor
     {
-        //Propiedades de la clase
+        //Atributos de la clase
+        public int Id { get; set; }
+        public int ProductId { get; set; }
         public string Name { get; set; }
         public Color ColorOption { get; set; }
     }

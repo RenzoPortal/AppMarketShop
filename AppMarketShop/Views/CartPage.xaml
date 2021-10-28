@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMarketShop.Views.CartPage"
-             BackgroundColor="#F5F5F8">
+             BackgroundColor="#F5F5F8"
+             NavigationPage.HasNavigationBar="False"
+             Shell.TabBarIsVisible="False">
     <ContentPage.Content>
         <!--Vista de desplazamiento-->
         <ScrollView VerticalScrollBarVisibility="Never">
@@ -60,7 +62,7 @@
                                 HorizontalScrollBarVisibility="Never" 
                                 VerticalOptions="StartAndExpand"
                                 HeightRequest="380"
-                                ItemsSource="{Binding cartproducts}">
+                                ItemsSource="{Binding prodCart}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Padding="0,10,0,8">
@@ -173,10 +175,10 @@
                         BackgroundColor="#512DA8"
                         TextColor="White"
                         CornerRadius="10"
-                        HorizontalOptions="Center"
-                        WidthRequest="314"
+                        HorizontalOptions="FillAndExpand"
                         HeightRequest="65"
-                        Margin="0"/>
+                        Margin="0"
+                        Command="{Binding CheckOutCommand}"/>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

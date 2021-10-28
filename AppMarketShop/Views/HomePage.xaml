@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:autocomlete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
              x:Class="AppMarketShop.Views.HomePage"
-             BackgroundColor="#F5F5F8">
+             BackgroundColor="#F5F5F8"
+             xmlns:renderers="clr-namespace:AppMarketShop.Renderers"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <!--Vista de desplazamiento-->
         <ScrollView VerticalScrollBarVisibility="Never"
@@ -28,13 +29,12 @@
                         <Image HeightRequest="20" 
                                WidthRequest="20" 
                                Source="Search.png"/>
-                        <autocomlete:SfAutoComplete Grid.Column="1" 
-                                                    Grid.ColumnSpan="2"
-                                                    Margin="5"
-                                                    HorizontalOptions="FillAndExpand"
-                                                    VerticalOptions="Center"
-                                                    Watermark="Search"
-                                                    ShowBorder="False"/>
+                        <renderers:BorderlessEntry Grid.Column="1" 
+                                                   Grid.ColumnSpan="2"
+                                                   Margin="5"
+                                                   HorizontalOptions="FillAndExpand"
+                                                   VerticalOptions="Center"
+                                                   Placeholder="Search"/>
                     </Grid>
                 </Frame>
                 <!--Titulo-->
@@ -47,7 +47,8 @@
                 <!--Lista de Categorias-->
                 <CollectionView Grid.Row="2"
                                 Margin="0"
-                                ItemsSource="{Binding categories}" 
+                                ItemsSource="{Binding Category}" 
+                                SelectionMode="Single"
                                 ItemsLayout="HorizontalList"
                                 HorizontalScrollBarVisibility="Never"
                                 HeightRequest="30">
@@ -55,6 +56,16 @@
                         <DataTemplate>
                             <StackLayout Margin="0,0,24,0"
                                          Padding="0">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="LightGray" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
                                 <!--Nombre de las categorias-->
                                 <Label Grid.Row="1" 
                                        Text="{Binding Name}" 
@@ -70,12 +81,24 @@
                 <!--Lista de productos-->
                 <CollectionView Grid.Row="3"
                                 Margin="0,30,0,0" 
-                                ItemsSource="{Binding products}"
+                                ItemsSource="{Binding Product}"
+                                SelectionMode="Single"
+                                SelectionChangedCommand="{Binding SelectionCommand}"
                                 ItemsLayout="HorizontalList"
                                 HeightRequest="340">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Padding="0,0,30,0">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="#F5F5F8" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
                                 <Frame WidthRequest="220"
                                        HeightRequest="320"
                                        CornerRadius="20"
@@ -131,11 +154,15 @@
                              Spacing="10"
                              HorizontalOptions="End"
                              Margin="0,20,30,40">
-                    
+
                     <Label Grid.Row="4"
                            Text="see more"
                            FontSize="18"
-                           TextColor="#512DA8"/>
+                           TextColor="#512DA8">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SeeMoreCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
 
                     <Image Source="ArrowNext.png" 
                            WidthRequest="15" 

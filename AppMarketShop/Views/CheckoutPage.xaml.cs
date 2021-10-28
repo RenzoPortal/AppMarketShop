@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Extensions;
+﻿using AppMarketShop.ViewModels;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,7 @@ namespace AppMarketShop.Views
         public CheckoutPage()
         {
             InitializeComponent();
-        }
-        //Metodo para mostrar un ventana Popup
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-             Navigation.PushPopupAsync(new PopupPaymentPage());
+            BindingContext = new CheckoutViewModel();
         }
     }
 }

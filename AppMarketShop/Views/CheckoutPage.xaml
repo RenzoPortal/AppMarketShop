@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMarketShop.Views.CheckoutPage"
-             BackgroundColor="#F5F5F8">
+             BackgroundColor="#F5F5F8"
+             NavigationPage.HasNavigationBar="False"
+             Shell.TabBarIsVisible="False">
     <ContentPage.Content>
         <!--Vista de desplazamiento-->
         <ScrollView VerticalScrollBarVisibility="Never">
@@ -257,11 +259,10 @@
                         BackgroundColor="#512DA8"
                         TextColor="White"
                         CornerRadius="10"
-                        HorizontalOptions="Center"
-                        WidthRequest="314"
+                        HorizontalOptions="FillAndExpand"
                         HeightRequest="65"
                         Margin="0"
-                        Clicked="Button_Clicked"/>
+                        Command="{Binding PaymentCommand}"/>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

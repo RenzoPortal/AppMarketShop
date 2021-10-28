@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppMarketShop.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,8 +10,7 @@ namespace AppMarketShop
         public App()
         {
             InitializeComponent();
-
-            MainPage = new Views.CartPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

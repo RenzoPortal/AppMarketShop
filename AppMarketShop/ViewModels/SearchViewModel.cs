@@ -1,27 +1,50 @@
 ﻿using AppMarketShop.Models;
+using AppMarketShop.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace AppMarketShop.ViewModels
 {
-    //Metodo de la clase
-    public class SearchViewModel
+    public class SearchViewModel : BaseViewModel
     {
-        //Usando el modelo Products
-        public ObservableCollection<Products> searchproducts { get; set; }
-        //Contructor de la clase
+        //Comandos para llevarnos SingleItemPage
+        public Command SelectionCommand { get; set; }
         public SearchViewModel()
         {
-            //Insertando datos a Products para muestra
-            searchproducts = new ObservableCollection<Products>
+            //Mostrando CollectionsViews
+            searchproduct = GetProdSearch();
+            //Usando los comamdo
+            SelectionCommand = new Command(gotoSingleItemPage);
+        }
+        //Usando los Product
+        ObservableCollection<Product> searchproduct;
+        public ObservableCollection<Product> Searchproduct
+        {
+            get { return searchproduct; }
+            set
             {
-                new Products{ Image="SearchiPad.png", Name="Apple\niPad Air", Price ="579" },
-                new Products{ Image="SearchApple.png", Name="Apple\nWatch", Price ="139" },
-                new Products{ Image="SearchiPad.png", Name="Apple\niPad Air", Price ="579" },
-                new Products{ Image="SearchApple.png", Name="Apple\nWatch", Price ="139" }
+                searchproduct = value;
+                OnPropertyChanged();
+            }
+        }
+        //Insertado datos a Product
+        private ObservableCollection<Product> GetProdSearch()
+        {
+            return new ObservableCollection<Product>
+            {
+                new Product{ Image="SearchiPad.png", Name="Apple\niPad Air", Price =579 },
+                new Product{ Image="SearchApple.png", Name="Apple\nWatch", Price =139 },
+                new Product{ Image="SearchiPad.png", Name="Apple\niPad Air", Price =579 },
+                new Product{ Image="SearchApple.png", Name="Apple\nWatch", Price =139 }
             };
+        }
+        //Metodo de SelectionCommand
+        private void gotoSingleItemPage(object obj)
+        {
+            Application.Current.MainPage.Navigation.PushAsync(new SingleItemPage());
         }
     }
 }

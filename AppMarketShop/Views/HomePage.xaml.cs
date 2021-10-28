@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppMarketShop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace AppMarketShop.Views
         {
             InitializeComponent();
             //Instanciando la clase HomeViewModel
-            BindingContext = new ViewModels.HomeViewModel();
+            BindingContext = new HomeViewModel();
         }
     }
 }

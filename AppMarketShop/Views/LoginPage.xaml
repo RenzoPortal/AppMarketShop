@@ -13,7 +13,7 @@
             <Grid RowDefinitions="Auto,Auto">
                 <!--Titulo-->
                 <Label Grid.Row="0"
-                       Text="Bienvenido a Market Shop"
+                       Text="Welcome to Market Shop"
                        FontSize="48"
                        FontAttributes="Bold"
                        TextColor="White"
@@ -51,6 +51,7 @@
                         <Entry Grid.Row="2"
                                Keyboard="Email"
                                Margin="20,-15,20,30"
+                               Text="{Binding EmailTxt}"
                                FontAttributes="Bold"/>
                         <!--Diseño horizontal Passwprd-->
                         <StackLayout Grid.Column="0" 
@@ -69,8 +70,9 @@
                         <Entry Grid.Row="4"
                                IsPassword="True"
                                Margin="20,-15,20,15"
+                               Text="{Binding PasswordTxt}"
                                FontAttributes="Bold"/>
-                        <!--Olvido de contraseña-->
+                        <!--Olvidaste tu contraseña-->
                         <Label Grid.Row="5"
                                Grid.Column="0"
                                Text="Forgot passcode?"
@@ -86,16 +88,17 @@
                                 HeightRequest="65"
                                 CornerRadius="10"
                                 HorizontalOptions="Center"
-                                Margin="0,30,0,15"/>
+                                Margin="0,30,0,15"
+                                Command="{Binding LoginCommand}"/>
                         <!--Registrarse-->
                         <Label Grid.Row="7"
                                Grid.Column="0"
                                Text="Create account"
                                TextColor="#5956E9"
-                               FontSize="16"
+                               FontSize="17"
                                HorizontalTextAlignment="Center">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Register_Tapped"/>
+                                <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                             </Label.GestureRecognizers>
                         </Label>
                     </Grid>

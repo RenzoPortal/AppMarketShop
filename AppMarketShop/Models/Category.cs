@@ -4,9 +4,10 @@ using System.Text;
 
 namespace AppMarketShop.Models
 {
-    public class Categories
+    public class Category
     {
-        //Propiedades de la clase
+        //Atributos de la clase
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
