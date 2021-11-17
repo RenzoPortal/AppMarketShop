@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMarketShop.Views.CartPage"
              BackgroundColor="#F5F5F8"
-             NavigationPage.HasNavigationBar="False"
-             Shell.TabBarIsVisible="False">
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <!--Vista de desplazamiento-->
         <ScrollView VerticalScrollBarVisibility="Never">
@@ -13,9 +12,11 @@
               ColumnDefinitions="Auto,Auto"
               Padding="30,40">
                 <!--Regresar-->
-                <Image Grid.Row="0"
-                   Source="ArrowBack.png"
-                   HorizontalOptions="Start"/>
+                <ImageButton Grid.Row="0"
+                             Source="ArrowBack.png"
+                             HorizontalOptions="Start"
+                             BackgroundColor="Transparent"
+                             Command="{Binding BackCommand}"/>
                 <!--Titulo-->
                 <Label Grid.Row="0"
                    Grid.ColumnSpan="2"

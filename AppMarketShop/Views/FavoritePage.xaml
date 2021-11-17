@@ -9,9 +9,11 @@
               ColumnDefinitions="Auto"
               Padding="30,40">
             <!--Regresar-->
-            <Image Grid.Row="0"
-                   Source="ArrowBack.png"
-                   HorizontalOptions="Start"/>
+            <ImageButton Grid.Row="0"
+                         Source="ArrowBack.png"
+                         HorizontalOptions="Start"
+                         BackgroundColor="Transparent"
+                         Command="{Binding BackCommand}"/>
             <!--Titulo-->
             <Label Grid.Row="0"
                    Grid.ColumnSpan="2"

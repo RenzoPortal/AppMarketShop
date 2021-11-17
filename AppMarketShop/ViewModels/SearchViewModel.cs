@@ -1,9 +1,11 @@
-﻿using AppMarketShop.Models;
+﻿using AppMarketShop.Data;
+using AppMarketShop.Models;
 using AppMarketShop.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AppMarketShop.ViewModels
@@ -11,40 +13,54 @@ namespace AppMarketShop.ViewModels
     public class SearchViewModel : BaseViewModel
     {
         //Comandos para llevarnos SingleItemPage
-        public Command SelectionCommand { get; set; }
+        public Command _BackCommand;
+        public ICommand BackCommand
+        {
+            get
+            {
+                if (_BackCommand == null)
+                {
+                    _BackCommand = new Command(BackToPage);
+                }
+                return _BackCommand;
+            }
+        }
         public SearchViewModel()
         {
             //Mostrando CollectionsViews
-            searchproduct = GetProdSearch();
-            //Usando los comamdo
-            SelectionCommand = new Command(gotoSingleItemPage);
+            ListarProduct();
         }
-        //Usando los Product
-        ObservableCollection<Product> searchproduct;
-        public ObservableCollection<Product> Searchproduct
+        ObservableCollection<Product> Products = new ObservableCollection<Product>();
+        public ObservableCollection<Product> GetProducts
         {
-            get { return searchproduct; }
+            get { return Products; }
             set
             {
-                searchproduct = value;
+                Products = value;
                 OnPropertyChanged();
             }
         }
-        //Insertado datos a Product
-        private ObservableCollection<Product> GetProdSearch()
+        private void ListarProduct()
         {
-            return new ObservableCollection<Product>
+            DataLogic dataLogic = new DataLogic();
+            var lstProducts = dataLogic.ShowDataProduct();
+            foreach (var prodDetails in lstProducts)
             {
-                new Product{ Image="SearchiPad.png", Name="Apple\niPad Air", Price =579 },
-                new Product{ Image="SearchApple.png", Name="Apple\nWatch", Price =139 },
-                new Product{ Image="SearchiPad.png", Name="Apple\niPad Air", Price =579 },
-                new Product{ Image="SearchApple.png", Name="Apple\nWatch", Price =139 }
-            };
+                Product product = new Product
+                {
+                    Id = prodDetails.Id,
+                    Image = prodDetails.Image,
+                    Name = prodDetails.Name,
+                    Description = prodDetails.Description,
+                    Price = prodDetails.Price
+                };
+                GetProducts.Add(product);
+            }
         }
         //Metodo de SelectionCommand
-        private void gotoSingleItemPage(object obj)
+        private void BackToPage(object obj)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new SingleItemPage());
+            App.Current.MainPage = new AppShell();
         }
     }
 }

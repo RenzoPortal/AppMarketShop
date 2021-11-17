@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AppMarketShop.ViewModels
@@ -11,13 +12,35 @@ namespace AppMarketShop.ViewModels
     public class CartViewModel : BaseViewModel
     {
         //Comandos para llevarnos CheckoutPage 
-        public Command CheckOutCommand { get; set; }
+        public Command _CheckOutCommand;
+        public Command _BackCommand;
+
+        public ICommand CheckOutCommand
+        {
+            get
+            {
+                if (_CheckOutCommand == null)
+                {
+                    _CheckOutCommand = new Command(CheckoutPage);
+                }
+                return _CheckOutCommand;
+            }
+        }
+        public ICommand BackCommand
+        {
+            get
+            {
+                if (_BackCommand == null)
+                {
+                    _BackCommand = new Command(BackToPage);
+                }
+                return _BackCommand;
+            }
+        }
         public CartViewModel()
         {
             //Mostrando CollectionsViews
             prodCarts = GetProdCart();
-            //Usando los comamdo
-            CheckOutCommand = new Command(gotoCheckoutPage);
         }
         //Usando los Product
         ObservableCollection<Product> prodCarts;
@@ -39,10 +62,14 @@ namespace AppMarketShop.ViewModels
                 new Product{ Image="AirPods.png", Name="APPLE AirPods Pro - White", Price =375 },
             };
         }
-        //Metodo de CheckOutCommand
-        private void gotoCheckoutPage(object obj)
+        //Metodos
+        private void BackToPage(object obj)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new CheckoutPage());
+            App.Current.MainPage = new AppShell();
+        }
+        private void CheckoutPage(object obj)
+        {
+            App.Current.MainPage.Navigation.PushAsync(new CheckoutPage());
         }
     }
 }

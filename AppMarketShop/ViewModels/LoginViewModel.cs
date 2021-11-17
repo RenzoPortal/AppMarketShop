@@ -1,4 +1,5 @@
-﻿using AppMarketShop.Views;
+﻿using AppMarketShop.Data;
+using AppMarketShop.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,33 +11,51 @@ namespace AppMarketShop.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         //Comandos para llevarnos al AppShell y RegisterPage
-        public Command RegisterCommand { get; set; }
-        public Command LoginCommand { get; set; }
-
+        public Command _RegisterCommand;
+        public Command _LoginCommand;
         private string emailtxt;
         private string passwordtxt;
-        public LoginViewModel()
+        public ICommand LoginCommand
         {
-            //Usando los comamdo
-            RegisterCommand = new Command(gotoRegisterPage);
-            LoginCommand = new Command(gotoHomePage);
-        }
-        //Metodo de LoginCommand
-        private void gotoHomePage(object obj)
-        {
-            if (EmailTxt.ToString()== "renzoportal34@gmail.com" & PasswordTxt.ToString()=="123456")
+            get
             {
-                Application.Current.MainPage = new AppShell();
+                if (_LoginCommand == null)
+                {
+                    _LoginCommand = new Command(LoginUser);
+                }
+                return _LoginCommand;
+            }
+        }
+        public ICommand RegisterCommand
+        {
+            get
+            {
+                if (_RegisterCommand == null)
+                {
+                    _RegisterCommand = new Command(RegisterPage);
+                }
+                return _RegisterCommand;
+            }
+        }
+        private void LoginUser()
+        {
+            var email = EmailTxt;
+            var pass = PasswordTxt;
+
+            DataLogic dl = new DataLogic();
+            bool success = dl.LoginUser(email, pass);
+            if (success)
+            {
+                App.Current.MainPage = new AppShell();
             }
             else
             {
-                Application.Current.MainPage.DisplayAlert("Error", "Please enter a valid Email and Password !!", "Ok");
+                App.Current.MainPage.DisplayAlert("Error", "User not found", "Ok");
             }
         }
-        //Metodo de RegisterCommand
-        private void gotoRegisterPage(object obj)
+        private void RegisterPage(object obj)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+            App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
         public string EmailTxt
         {

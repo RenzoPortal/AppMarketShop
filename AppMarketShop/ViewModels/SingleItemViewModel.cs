@@ -13,13 +13,34 @@ namespace AppMarketShop.ViewModels
     public class SingleItemViewModel : BaseViewModel
     {
         //Comandos para llevarnos CartPage
-        public Command AddToCartCommand { get; set; }
+        public Command _AddToCartCommand;
+        public Command _BackCommand;
+        public ICommand AddToCartCommand
+        {
+            get
+            {
+                if (_AddToCartCommand == null)
+                {
+                    _AddToCartCommand = new Command(CartPage);
+                }
+                return _AddToCartCommand;
+            }
+        }
+        public ICommand BackCommand
+        {
+            get
+            {
+                if (_BackCommand == null)
+                {
+                    _BackCommand = new Command(BackToPage);
+                }
+                return _BackCommand;
+            }
+        }
         public SingleItemViewModel()
         {
             //Mostrando CollectionsViews
             productcolors = GetProductColor();
-            //Usando los comamdo
-            AddToCartCommand = new Command(gotoCartPage);
         }
         //Usando los ProdColor
         ObservableCollection<ProdColor> productcolors;
@@ -42,9 +63,13 @@ namespace AppMarketShop.ViewModels
             };
         }
         //Metodo de AddToCartCommand
-        private void gotoCartPage(object obj)
+        private void CartPage(object obj)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new CartPage());
+            App.Current.MainPage.Navigation.PushAsync(new CartPage());
+        }
+        private void BackToPage(object obj)
+        {
+            App.Current.MainPage = new AppShell();
         }
     }
 }

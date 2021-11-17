@@ -11,12 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace AppMarketShop.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FavoritePage : ContentPage
+    public partial class AddProductPage : ContentPage
     {
-        public FavoritePage()
+        public AddProductPage()
         {
             InitializeComponent();
-            BindingContext = new FavoriteViewModel();
+            BindingContext = new ProductViewModel();
         }
     }
 }

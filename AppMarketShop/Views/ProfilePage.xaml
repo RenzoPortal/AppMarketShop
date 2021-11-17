@@ -9,10 +9,12 @@
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" 
                   Padding="30,40">
                 <!--Regresar-->
-                <Image Grid.Row="0"
-                       Source="ArrowBack.png"
-                       Margin="0,0,0,20"
-                       HorizontalOptions="Start"/>
+                <ImageButton Grid.Row="0"
+                             Source="ArrowBack.png"
+                             Margin="0,0,0,20"
+                             HorizontalOptions="Start"
+                             BackgroundColor="Transparent"
+                             Command="{Binding BackCommand}"/>
                 <!--Titulo-->
                 <Label Grid.Row="1"
                        Text="My profile"

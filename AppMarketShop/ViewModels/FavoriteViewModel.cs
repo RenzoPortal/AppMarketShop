@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace AppMarketShop.ViewModels
 {
-    public class ProfileViewModel : BaseViewModel
+    public class FavoriteViewModel : BaseViewModel
     {
         public Command _BackCommand;
         public ICommand BackCommand

@@ -1,7 +1,9 @@
-﻿using AppMarketShop.Views;
+﻿using AppMarketShop.Data;
+using AppMarketShop.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AppMarketShop.ViewModels
@@ -9,26 +11,32 @@ namespace AppMarketShop.ViewModels
     public class RegisterViewModel : BaseViewModel
     {
         //Comandos para Regresar Atras y otro para llevarnos AppShell
-        public Command BackCommand { get; set; }
-        public Command CreateUserCommand { get; set; }
+        public Command _BackCommand;
+        public Command _RegisterCommand;
         private string emailtxt;
         private string passwordtxt;
         private string conpasswordtxt;
-        public RegisterViewModel()
+        public ICommand RegisterCommand
         {
-            //Usando los comamdo
-            BackCommand = new Command(gotoBack);
-            CreateUserCommand = new Command(gotoHomePage);
+            get
+            {
+                if (_RegisterCommand == null)
+                {
+                    _RegisterCommand = new Command(RegisterUser);
+                }
+                return _RegisterCommand;
+            }
         }
-        //Metodo de BackCommand
-        private void gotoBack(object obj)
+        public ICommand BackCommand
         {
-            Application.Current.MainPage.Navigation.PushAsync(new LoginPage());
-        }
-        //Metodo de CreateUserCommand
-        private void gotoHomePage(object obj)
-        {
-            Application.Current.MainPage = new AppShell();
+            get
+            {
+                if (_BackCommand == null)
+                {
+                    _BackCommand = new Command(BackToPage);
+                }
+                return _BackCommand;
+            }
         }
         public string EmailTxt
         {
@@ -59,12 +67,42 @@ namespace AppMarketShop.ViewModels
             get => conpasswordtxt;
             set
             {
-                if (passwordtxt != value)
+                if (conpasswordtxt != value)
                 {
                     conpasswordtxt = value;
                 }
                 OnPropertyChanged();
             }
+        }
+        private void RegisterUser()
+        {
+            var email = EmailTxt;
+            var pass = PasswordTxt;
+            var conpass = ConPasswordTxt;
+            DataLogic dl = new DataLogic();
+            bool success = dl.RegisterUser(email, pass);
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass) || string.IsNullOrEmpty(conpass))
+            {
+                App.Current.MainPage.DisplayAlert("Error", "You must fill all the fields !!", "Ok");
+            }
+            else if (!string.Equals(pass, conpass))
+            {
+                App.Current.MainPage.DisplayAlert("Error", "Enter Same Password !!", "Ok");
+            }
+            else
+            {
+                if (success)
+                {
+                    EmailTxt = string.Empty;
+                    PasswordTxt = string.Empty;
+                    ConPasswordTxt = string.Empty;
+                    App.Current.MainPage = new AppShell();
+                }
+            }
+        }
+        private void BackToPage(object obj)
+        {
+            App.Current.MainPage.Navigation.PushAsync(new LoginPage());
         }
     }
 }

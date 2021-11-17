@@ -22,7 +22,8 @@
                 <Frame Grid.Row="1"
                        BackgroundColor="White"
                        HeightRequest="485"
-                       CornerRadius="30">
+                       CornerRadius="30"
+                       HasShadow="False">
                     <!--Grid con 2 columnas y 8 filas-->
                     <Grid ColumnDefinitions="*,Auto"
                           RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">

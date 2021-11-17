@@ -14,17 +14,19 @@
             <Grid RowDefinitions="Auto,Auto,Auto"
               Padding="0,40,0,0">
                 <!--Regresar-->
-                <Image Grid.Row="0"
-                   Source="ArrowBack.png"
-                   HorizontalOptions="Start"
-                   Margin="30,0"/>
+                <ImageButton Grid.Row="0"
+                             Source="ArrowBack.png"
+                             HorizontalOptions="Start"
+                             Margin="30,0"
+                             BackgroundColor="Transparent"
+                             Command="{Binding BackCommand}"/>
                 <!--Favorito-->
                 <Image Grid.Row="0"
                    Source="Heart.png"
                    HorizontalOptions="End"
                    Margin="30,0"/>
                 <!--Imagen producto-->
-                <Image Grid.Row="1"
+                <Image x:Name="txtimage" Grid.Row="1"
                    Source="iPad.png"
                    Aspect="AspectFill"
                    HeightRequest="260"
@@ -39,7 +41,7 @@
                     <!--Grid con 7 filas-->
                     <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
                         <!--Nombre-->
-                        <Label Grid.Row="0"
+                        <Label x:Name="txtnombre" Grid.Row="0"
                            Text="2020 Apple iPad Air 10.9"
                            TextColor="Black"
                            FontSize="28"
@@ -95,8 +97,8 @@
                            TextColor="Black"
                            FontSize="20"
                            FontAttributes="Bold"/>
-                        <Label Grid.Row="4"
-                           Text="Available when you purchase any new&#10;iPhone, iPad, iPod Touch, Mac or Apple TV,&#10;£4.99/month after free trial."
+                        <Label x:Name="txtdescripcion" Grid.Row="4"
+                           Text=""
                            FontSize="17"
                            LineHeight="1.1"
                            Padding="0,0,0,50"/>
@@ -116,13 +118,18 @@
                                           FontSize="22" 
                                           FontAttributes="Bold" 
                                           TextColor="#512DA8"/>
-                                    <Span Text="954"
+                                    <Span x:Name="txtprecio" Text="954"
                                           FontSize="22" 
                                           FontAttributes="Bold" 
                                           TextColor="#512DA8"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
+                        <Entry x:Name="txtcantidad"  
+                               Grid.Row="6" 
+                               Text="1" 
+                               Keyboard="Numeric" 
+                               IsVisible="False"/>
                         <!--Boton agregar al carrito-->
                         <Button Grid.Row="6"
                                 Text="Add to basket"

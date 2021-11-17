@@ -12,9 +12,11 @@
               ColumnDefinitions="Auto,Auto"
               Padding="30,40,30,0">
             <!--Regresar-->
-            <Image Grid.Row="0"
-                   Source="ArrowBack.png"
-                   HorizontalOptions="Start"/>
+            <ImageButton Grid.Row="0"
+                         Source="ArrowBack.png"
+                         HorizontalOptions="Start"
+                         BackgroundColor="Transparent"
+                         Command="{Binding BackCommand}"/>
             <!--Buscador usando SfAutoComplete-->
             <Frame Grid.Row="0"
                    Grid.Column="1"
@@ -52,9 +54,9 @@
                             Grid.Row="2" 
                             Grid.ColumnSpan="2"
                             VerticalScrollBarVisibility="Never" 
-                            ItemsSource="{Binding Searchproduct}"
+                            ItemsSource="{Binding GetProducts}"
                             SelectionMode="Single"
-                            SelectionChangedCommand="{Binding SelectionCommand}"
+                            SelectionChangedCommand="{Binding SelectCommand}"
                             VerticalOptions="StartAndExpand">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"

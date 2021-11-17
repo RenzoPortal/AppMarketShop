@@ -1,4 +1,5 @@
-﻿using AppMarketShop.Models;
+﻿using AppMarketShop.Data;
+using AppMarketShop.Models;
 using AppMarketShop.Views;
 using System;
 using System.Collections.Generic;
@@ -12,69 +13,81 @@ namespace AppMarketShop.ViewModels
     public class HomeViewModel : BaseViewModel
     {
         //Comandos para llevarnos SearchPage y otro a Detalles de un producto
-        public Command SeeMoreCommand { get; set; }
-        public Command SelectionCommand { get; set; }
+        public Command _SeeMoreCommand;
+        public ICommand SeeMoreCommand
+        {
+            get
+            {
+                if (_SeeMoreCommand == null)
+                {
+                    _SeeMoreCommand = new Command(SearhPage);
+                }
+                return _SeeMoreCommand;
+            }
+        }
         public HomeViewModel()
         {
             //Mostrando CollectionsViews
-            categories = GetCategories();
-            products = GetProducts();
-            //Usando los comamdo
-            SeeMoreCommand = new Command(gotoSearhPage);
-            SelectionCommand = new Command(gotoSingleItemPage);
+            ListarCategory();
+            ListarProduct();
         }
         //Usando los Category
-        ObservableCollection<Category> categories;
-        public ObservableCollection<Category> Category
+        ObservableCollection<Category> Categories = new ObservableCollection<Category>();
+        public ObservableCollection<Category> GetCategories
         {
-            get { return categories; }
+            get { return Categories; }
             set
             {
-                categories = value;
+                Categories = value;
                 OnPropertyChanged();
             }
         }
-        //Insertado datos a Category
-        private ObservableCollection<Category> GetCategories()
+        private void ListarCategory()
         {
-            return new ObservableCollection<Category>
+            DataLogic dataLogic = new DataLogic();
+            var lstCategories = dataLogic.ShowDataCategory();
+            foreach (var cateDetails in lstCategories)
             {
-                new Category{ Name="Wearable" },
-                new Category{ Name="Laptops" },
-                new Category{ Name="Phones" },
-                new Category{ Name="Airphones" }
-            };
+                Category category = new Category
+                {
+                    Id = cateDetails.Id,
+                    Name = cateDetails.Name
+                };
+                GetCategories.Add(category);
+            }
         }
         //Usando los Product
-        ObservableCollection<Product> products;
-        public ObservableCollection<Product> Product
+        ObservableCollection<Product> Products = new ObservableCollection<Product>();
+        public ObservableCollection<Product> GetProducts
         {
-            get { return products; }
+            get{ return Products; }
             set
             {
-                products = value;
+                Products = value;
                 OnPropertyChanged();
             }
         }
-        //Insertado datos a Product
-        private ObservableCollection<Product> GetProducts()
+        private void ListarProduct()
         {
-            return new ObservableCollection<Product>
+            DataLogic dataLogic = new DataLogic();
+            var lstProducts = dataLogic.ShowDataProduct();
+            foreach (var prodDetails in lstProducts)
             {
-                 new Product{ Image="AppleWatch.png", Name="AppleWatch", Description ="Falta llenar", Price =120 },
-                new Product{ Image="AppleWatch.png", Name="AppleWatch", Description ="Falta llenar", Price =120 },
-                new Product{ Image="AppleWatch.png", Name="AppleWatch", Description ="Falta llenar", Price =120 }
-            };
+                Product product = new Product
+                {
+                    Id = prodDetails.Id,
+                    Image = prodDetails.Image,
+                    Name = prodDetails.Name,
+                    Description = prodDetails.Description,
+                    Price = prodDetails.Price
+                };
+                GetProducts.Add(product);
+            }
         }
         //Metodo de SeeMoreCommand
-        private void gotoSearhPage(object obj)
+        private void SearhPage(object obj)
         {
-            Application.Current.MainPage.Navigation.PushAsync(new SearchPage());
-        }
-        //Metodo de SelectionCommand
-        private void gotoSingleItemPage(object obj)
-        {
-            Application.Current.MainPage.Navigation.PushAsync(new SingleItemPage());
+            App.Current.MainPage.Navigation.PushAsync(new SearchPage());
         }
     }
 }

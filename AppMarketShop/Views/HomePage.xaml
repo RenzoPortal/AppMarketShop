@@ -47,7 +47,7 @@
                 <!--Lista de Categorias-->
                 <CollectionView Grid.Row="2"
                                 Margin="0"
-                                ItemsSource="{Binding Category}" 
+                                ItemsSource="{Binding GetCategories}" 
                                 SelectionMode="Single"
                                 ItemsLayout="HorizontalList"
                                 HorizontalScrollBarVisibility="Never"
@@ -79,12 +79,13 @@
 
                 </CollectionView>
                 <!--Lista de productos-->
-                <CollectionView Grid.Row="3"
+                <CollectionView x:Name="SelecProd" Grid.Row="3"
                                 Margin="0,30,0,0" 
-                                ItemsSource="{Binding Product}"
+                                ItemsSource="{Binding GetProducts}"
                                 SelectionMode="Single"
-                                SelectionChangedCommand="{Binding SelectionCommand}"
+                                SelectionChanged="SelecProd_SelectionChanged"
                                 ItemsLayout="HorizontalList"
+                                HorizontalScrollBarVisibility="Never" 
                                 HeightRequest="340">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -104,7 +105,7 @@
                                        CornerRadius="20"
                                        HasShadow="False"
                                        Padding="0">
-                                    <Grid RowDefinitions="Auto,Auto,Auto"
+                                    <Grid RowDefinitions="Auto,Auto,Auto,Auto"
                                           Margin="20">
                                         <!--Imagen circular-->
                                         <Frame WidthRequest="180" 
@@ -142,6 +143,19 @@
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
+                                        <Label Grid.Row="3"
+                                               Text="{Binding Id}"
+                                               FontSize="10"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               IsVisible="False"
+                                               HorizontalTextAlignment="Center"/>
+                                        <Label Text="{Binding Description}"
+                                               FontSize="10"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               IsVisible="False"
+                                               HorizontalTextAlignment="Center"/>
                                     </Grid>
                                 </Frame>
                             </StackLayout>
@@ -164,10 +178,12 @@
                         </Label.GestureRecognizers>
                     </Label>
 
-                    <Image Source="ArrowNext.png" 
-                           WidthRequest="15" 
-                           HeightRequest="15"/>
-                    
+                    <ImageButton Source="ArrowNext.png" 
+                                 WidthRequest="15" 
+                                 HeightRequest="15"
+                                 BackgroundColor="Transparent"
+                                 Command="{Binding SeeMoreCommand}"/>
+
                 </StackLayout>
             </Grid>
         </ScrollView>

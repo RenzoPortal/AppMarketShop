@@ -3,23 +3,45 @@ using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AppMarketShop.ViewModels
 {
     public class CheckoutViewModel : BaseViewModel
     {
-        //Comandos para mostrarnos un ventana PopupPaymentPage
-        public Command PaymentCommand { get; set; }
-        public CheckoutViewModel()
+        public Command _BackCommand;
+        public Command _PaymentCommand;
+        public ICommand BackCommand
         {
-            //Usando los comamdo
-            PaymentCommand = new Command(gotoPaymentPage);
+            get
+            {
+                if (_BackCommand == null)
+                {
+                    _BackCommand = new Command(BackToPage);
+                }
+                return _BackCommand;
+            }
         }
-        //Metodo de PaymentCommand
-        private void gotoPaymentPage(object obj)
+        public ICommand PaymentCommand
         {
-            Application.Current.MainPage.Navigation.PushPopupAsync(new PopupPaymentPage());
+            get
+            {
+                if (_PaymentCommand == null)
+                {
+                    _PaymentCommand = new Command(PaymentPopupPage);
+                }
+                return _PaymentCommand;
+            }
+        }
+        private void BackToPage(object obj)
+        {
+            App.Current.MainPage.Navigation.PushAsync(new CartPage());
+        }
+        //Metodo
+        private void PaymentPopupPage(object obj)
+        {
+            App.Current.MainPage.Navigation.PushPopupAsync(new PopupPaymentPage());
         }
     }
 }
