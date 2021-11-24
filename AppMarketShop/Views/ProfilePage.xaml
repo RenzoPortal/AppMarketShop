@@ -44,7 +44,7 @@
                         </Frame>
                         <!--Nombre-->
                         <Label Grid.Row="1"
-                               Text="Rosina Sanchez"
+                               Text="Renzo Portal"
                                HorizontalTextAlignment="Center"
                                TextColor="Black"
                                FontAttributes="Bold"
@@ -52,7 +52,7 @@
                                FontSize="18"/>
                         <!--Correo-->
                         <Label Grid.Row="2"
-                               Text="rosina@company.com"
+                               Text="renzoportal34@gmail.com"
                                HorizontalTextAlignment="Center"
                                FontSize="16"
                                Margin="0,-5,0,0"/>
@@ -155,7 +155,8 @@
                         HeightRequest="55"
                         CornerRadius="10"
                         HorizontalOptions="Center"
-                       Margin="0"/>
+                        Margin="0"
+                        Command="{Binding SignOutCommand}"/>
             </Grid>
         </ScrollView>
     </ContentPage.Content>
