@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMarketShop.Views.LoginPage"
              BackgroundColor="#512DA8"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             Shell.TabBarIsVisible="False">
     <ContentPage.Content>
         <!--Vista de desplazamiento-->
         <ScrollView VerticalOptions="FillAndExpand"

@@ -96,7 +96,7 @@ namespace AppMarketShop.ViewModels
                     EmailTxt = string.Empty;
                     PasswordTxt = string.Empty;
                     ConPasswordTxt = string.Empty;
-                    App.Current.MainPage = new AppShell();
+                    App.Current.MainPage.Navigation.PushAsync(new LoginPage());
                 }
             }
         }
