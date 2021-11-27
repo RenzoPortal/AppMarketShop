@@ -47,10 +47,10 @@ namespace AppMarketShop.ViewModels
             Models.User success = dl.LoginUser(email, pass);
             if (success.Id != 0)
             {
+                Preferences.Set("IdUser", success.Id);
                 Preferences.Set("Email", success.Email);
                 Preferences.Set("FullName", success.FullName);
-                var ema = Preferences.Get("Email", "");
-                var fname = Preferences.Get("FullName", "");
+                var id = Preferences.Get("IdUser", 0);
                 App.Current.MainPage = new AppShell();
             }
             else
