@@ -13,6 +13,7 @@ namespace AppMarketShop.ViewModels
         //Comandos para Regresar Atras y otro para llevarnos AppShell
         public Command _BackCommand;
         public Command _RegisterCommand;
+        private string fullnametxt;
         private string emailtxt;
         private string passwordtxt;
         private string conpasswordtxt;
@@ -36,6 +37,18 @@ namespace AppMarketShop.ViewModels
                     _BackCommand = new Command(BackToPage);
                 }
                 return _BackCommand;
+            }
+        }
+        public string FullNametxt
+        {
+            get => fullnametxt;
+            set
+            {
+                if (fullnametxt != value)
+                {
+                    fullnametxt = value;
+                }
+                OnPropertyChanged();
             }
         }
         public string EmailTxt
@@ -76,11 +89,12 @@ namespace AppMarketShop.ViewModels
         }
         private void RegisterUser()
         {
+            var fullname = FullNametxt;
             var email = EmailTxt;
             var pass = PasswordTxt;
             var conpass = ConPasswordTxt;
             DataLogic dl = new DataLogic();
-            bool success = dl.RegisterUser(email, pass);
+            bool success = dl.RegisterUser(fullname, email, pass);
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass) || string.IsNullOrEmpty(conpass))
             {
                 App.Current.MainPage.DisplayAlert("Error", "You must fill all the fields !!", "Ok");

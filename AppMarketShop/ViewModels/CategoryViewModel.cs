@@ -11,6 +11,7 @@ namespace AppMarketShop.ViewModels
     {
         public Command _AddCateCommand;
         private string nametxt;
+        private string imagetxt;
         public ICommand AddCateCommand
         {
             get
@@ -34,15 +35,30 @@ namespace AppMarketShop.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string ImageTxt
+        {
+            get => imagetxt;
+            set
+            {
+                if (imagetxt != value)
+                {
+                    imagetxt = value;
+                }
+                OnPropertyChanged();
+            }
+        }
+
         private void AddCategory()
         {
             var name = NameTxt;
+            var img = ImageTxt;
 
             DataLogic dl = new DataLogic();
-            bool success = dl.AddCategory(name);
+            bool success = dl.AddCategory(name, img);
             if (success)
             {
                 NameTxt = string.Empty;
+                ImageTxt = string.Empty;
                 App.Current.MainPage.DisplayAlert("Success", "The category was added", "Ok");
             }
         }

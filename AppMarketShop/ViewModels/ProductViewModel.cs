@@ -12,6 +12,7 @@ namespace AppMarketShop.ViewModels
         public Command _AddProdCommand;
         private string imagetxt;
         private string nametxt;
+        private string categoryIdtxt;
         private string descríptiontxt;
         private string pricetxt;
         public ICommand AddProdCommand
@@ -49,6 +50,18 @@ namespace AppMarketShop.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string CategoryIdTxt
+        {
+            get => categoryIdtxt;
+            set
+            {
+                if (categoryIdtxt != value)
+                {
+                    categoryIdtxt = value;
+                }
+                OnPropertyChanged();
+            }
+        }
         public string DescriptionTxt
         {
             get => descríptiontxt;
@@ -77,16 +90,18 @@ namespace AppMarketShop.ViewModels
         {
             var image = ImageTxt;
             var name = NameTxt;
+            var id = Convert.ToInt32(CategoryIdTxt);
             var descrip = DescriptionTxt;
             var price = Convert.ToSingle(PriceTxt);
 
             DataLogic dl = new DataLogic();
-            bool success = dl.AddProduct(image, name, descrip, price);
+            bool success = dl.AddProduct(image, name, id, descrip, price);
             if (success)
             {
                 ImageTxt = string.Empty;
                 NameTxt = string.Empty;
                 DescriptionTxt = string.Empty;
+                CategoryIdTxt = string.Empty;
                 PriceTxt = string.Empty;
                 App.Current.MainPage.DisplayAlert("Success", "The product was added", "Ok");
             }

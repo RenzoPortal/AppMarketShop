@@ -14,7 +14,7 @@ namespace AppMarketShop.Data
         private User user;
         private Category category;
         private Product product;
-        private Cart cart;
+        private DataTemporal dataTemporal;
         private Order order;
         private OrderDetail orderDetail;
         public DataLogic()
@@ -26,11 +26,13 @@ namespace AppMarketShop.Data
             conn.CreateTable<Cart>();
             conn.CreateTable<Order>();
             conn.CreateTable<OrderDetail>();
+            conn.CreateTable<DataTemporal>();
         }
-        public bool RegisterUser(string email, string pass)
+        public bool RegisterUser(string fullname, string email, string pass)
         {
             user = new User
             {
+                FullName = fullname,
                 Email = email,
                 Password = pass
             };
@@ -44,24 +46,30 @@ namespace AppMarketShop.Data
             catch (Exception) { }
             return false;
         }
-        public bool LoginUser(string email, string pass)
+        public User LoginUser(string email, string pass)
         {
+            User use = new User();
             var select = conn.Table<User>();
             var d1 = select.Where(x => x.Email == email && x.Password == pass).FirstOrDefault();
+            use.Id = d1.Id;
+            use.FullName = d1.FullName;
+            use.Email = d1.Email;
+            
             if (d1 != null)
             {
-                return true;
+                return use;
             }
             else
             {
-                return false;
+                return null;
             }
         }
-        public bool AddCategory(string name)
+        public bool AddCategory(string name, string image)
         {
             category = new Category
             {
-               Name = name
+               Name = name,
+               Image = image
             };
             try
             {
@@ -78,12 +86,13 @@ namespace AppMarketShop.Data
             var lstCategories = from category in conn.Table<Category>() select category;
             return lstCategories;
         }
-        public bool AddProduct(string image, string name, string descrip, float price)
+        public bool AddProduct(string image, string name, int id, string descrip, float price)
         {
             product = new Product
             {
                 Image = image,
                 Name = name,
+                CategoryId = id,
                 Description = descrip,
                 Price = price
             };
@@ -101,6 +110,28 @@ namespace AppMarketShop.Data
         {
             var lstProducts = from product in conn.Table<Product>() select product;
             return lstProducts;
+        }
+        public IEnumerable<Product> ListProdCategory(int id)
+        {
+            var lstProducts = from product in conn.Table<Product>().Where(i => i.CategoryId == id) select product;
+            return lstProducts;
+        }
+        public  bool AddToCart (DataTemporal tabla)
+        {
+            try
+            {
+                conn.Insert(tabla);
+                conn.Close();
+                return true;
+            }
+            catch (SQLiteException) { }
+            catch (Exception) { }
+            return false;
+        }
+        public IEnumerable<DataTemporal> ShowDataTemporal()
+        {
+            var lstDataTenporal = from dataTemporal in conn.Table<DataTemporal>() select dataTemporal;
+            return lstDataTenporal;
         }
     }
 }

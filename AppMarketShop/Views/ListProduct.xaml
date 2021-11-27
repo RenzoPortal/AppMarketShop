@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMarketShop.Views.ListProduct">
+    <Grid RowDefinitions="Auto,Auto,Auto" 
+              ColumnDefinitions="Auto,Auto"
+              Padding="30,40,30,0">
+        <!--Regresar-->
+        <ImageButton Grid.Row="0"
+                     Source="ArrowBack.png"
+                     HorizontalOptions="Start"
+                     BackgroundColor="Transparent"
+                     Command ="{Binding BackCommand}"/>
+        <!--Titulo-->
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Text="Category"
+               Margin="0"
+               FontSize="20"
+               TextColor="Black"
+               FontAttributes="Bold"
+               HorizontalOptions="CenterAndExpand"/>
+        <!--Lista de productos-->
+        <CollectionView x:Name="CollectionProductCate" 
+                            Grid.Column="0" 
+                            Grid.Row="2" 
+                            Grid.ColumnSpan="2"
+                            VerticalScrollBarVisibility="Never" 
+                            SelectionMode="Single"
+                            VerticalOptions="StartAndExpand">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                     Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="12">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#F5F5F8" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Frame WidthRequest="156"
+                                   HeightRequest="263"
+                                   CornerRadius="10"
+                                   HasShadow="False"
+                                   Padding="0">
+                            <Grid RowDefinitions="Auto,Auto,Auto">
+                                <!--Imagenes de los productos-->
+                                <Image Grid.Row="0"
+                                           Source="{Binding Image}"
+                                           Margin="5"/>
+                                <!--Nombres de los productos-->
+                                <Label Grid.Row="1" 
+                                           Text="{Binding Name}"
+                                           FontSize="22"
+                                           FontAttributes="Bold"
+                                           Margin="0,0,0,0"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="Center"/>
+                                <!--Precios de los productos-->
+                                <Label Grid.Row="2"
+                                               HorizontalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="From S/" 
+                                                          FontSize="17" 
+                                                          FontAttributes="Bold" 
+                                                          TextColor="#5956E9"/>
+                                            <Span Text="{Binding Price}"
+                                                          FontSize="20" 
+                                                          FontAttributes="Bold" 
+                                                          TextColor="#5956E9"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Grid.Row="3"
+                                               Text="{Binding Id}"
+                                               FontSize="10"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               IsVisible="False"
+                                               HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Description}"
+                                               FontSize="10"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               IsVisible="False"
+                                               HorizontalTextAlignment="Center"/>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

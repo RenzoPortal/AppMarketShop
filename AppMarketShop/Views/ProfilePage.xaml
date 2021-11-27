@@ -43,16 +43,16 @@
                                    Aspect="AspectFill"/>
                         </Frame>
                         <!--Nombre-->
-                        <Label Grid.Row="1"
-                               Text="Renzo Portal"
+                        <Label x:Name="txtfullname" Grid.Row="1"
+                               Text="Nombre"
                                HorizontalTextAlignment="Center"
                                TextColor="Black"
                                FontAttributes="Bold"
                                 Margin="0,10,0,0"
                                FontSize="18"/>
                         <!--Correo-->
-                        <Label Grid.Row="2"
-                               Text="renzoportal34@gmail.com"
+                        <Label x:Name="txtemailuser" Grid.Row="2"
+                               Text="Email"
                                HorizontalTextAlignment="Center"
                                FontSize="16"
                                Margin="0,-5,0,0"/>

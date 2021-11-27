@@ -31,5 +31,12 @@ namespace AppMarketShop.Views
             string precio = model.Price.ToString();
             Navigation.PushModalAsync(new SingleItemPage(id, nombre, imagen, descrip, precio));
         }
+
+        private void ShowCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Models.Category model = e.CurrentSelection.FirstOrDefault() as Models.Category;
+            int id = model.Id;
+            Navigation.PushModalAsync(new ListProduct(id));
+        }
     }
 }

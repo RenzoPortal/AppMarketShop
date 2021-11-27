@@ -15,8 +15,6 @@ namespace AppMarketShop.Views
         public CartPage()
         {
             InitializeComponent();
-            //Instanciando la clase CartViewModel
-            BindingContext = new ViewModels.CartViewModel();
         }
     }
 }

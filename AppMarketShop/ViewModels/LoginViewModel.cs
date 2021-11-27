@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AppMarketShop.ViewModels
@@ -43,9 +44,13 @@ namespace AppMarketShop.ViewModels
             var pass = PasswordTxt;
 
             DataLogic dl = new DataLogic();
-            bool success = dl.LoginUser(email, pass);
-            if (success)
+            Models.User success = dl.LoginUser(email, pass);
+            if (success.Id != 0)
             {
+                Preferences.Set("Email", success.Email);
+                Preferences.Set("FullName", success.FullName);
+                var ema = Preferences.Get("Email", "");
+                var fname = Preferences.Get("FullName", "");
                 App.Current.MainPage = new AppShell();
             }
             else

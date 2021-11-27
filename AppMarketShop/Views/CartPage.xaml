@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:AppMarketShop.ViewModels"
              x:Class="AppMarketShop.Views.CartPage"
              BackgroundColor="#F5F5F8"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.BindingContext>
+        <vm:CartViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <!--Vista de desplazamiento-->
         <ScrollView VerticalScrollBarVisibility="Never">
@@ -63,7 +67,7 @@
                                 HorizontalScrollBarVisibility="Never" 
                                 VerticalOptions="StartAndExpand"
                                 HeightRequest="380"
-                                ItemsSource="{Binding prodCart}">
+                                ItemsSource="{Binding GetDataTemporal}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Padding="0,10,0,8">
@@ -84,10 +88,17 @@
                                            WidthRequest="80" 
                                            HeightRequest="108"/>
                                         <!--Nombres de los productos-->
+                                        <Label Grid.Row="3"
+                                               Text="{Binding IdProduct}"
+                                               FontSize="10"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               IsVisible="False"
+                                               HorizontalTextAlignment="Center"/>
                                         <Label Grid.Column="1"
                                            Grid.Row="0" 
                                            Margin="0,10,0,0" 
-                                           Text="{Binding Name}" 
+                                           Text="{Binding Nombre}" 
                                            FontSize="17" TextColor="Black" 
                                            FontAttributes="Bold"/>
                                         <!--Precios de los productos-->
@@ -100,7 +111,7 @@
                                                       FontSize="16" 
                                                       FontAttributes="Bold" 
                                                       TextColor="#5956E9"/>
-                                                    <Span Text="{Binding Price}"
+                                                    <Span Text="{Binding Precio}"
                                                       FontSize="16" 
                                                       FontAttributes="Bold" 
                                                       TextColor="#5956E9"/>
@@ -111,29 +122,36 @@
                                         <Label Grid.Column="1"
                                                Grid.Row="2" 
                                                FontSize="14" 
-                                               Text="Quantity"/>
+                                               Text="Quantity: "/>
+                                        <Label Grid.Column="1"
+                                               Grid.Row="2" 
+                                               Grid.ColumnSpan="2"
+                                               FontAttributes="Bold"
+                                               HorizontalTextAlignment="Center"
+                                               FontSize="15" 
+                                               Text="{Binding Cantidad}"/>
                                         <!--Disminuir-->
-                                        <ImageButton Grid.Row="2"
+                                        <!--<ImageButton Grid.Row="2"
                                                      Grid.Column="1"
                                                      Source="Less.png"
                                                      VerticalOptions="Center"
                                                      HorizontalOptions="Center"
-                                                     Margin="-30,-16,0,0"/>
+                                                     Margin="-30,-16,0,0"/>-->
                                         <!--Valor-->
-                                        <Label Grid.Column="1"
+                                        <!--V<Label Grid.Column="1"
                                                Grid.Row="2" 
                                                FontSize="14" 
                                                Margin="12,2,0,0"
                                                Text="1"
                                                TextColor="Black"
-                                               HorizontalOptions="Center"/>
+                                               HorizontalOptions="Center"/>-->
                                         <!--Aumentar-->
-                                        <ImageButton Grid.Row="2"
+                                        <!--<ImageButton Grid.Row="2"
                                                      Grid.Column="1"
                                                      Source="More.png"
                                                      VerticalOptions="Center"
                                                      HorizontalOptions="Center"
-                                                     Margin="60,-16,0,0"/>
+                                                     Margin="60,-16,0,0"/>-->
                                     </Grid>
                                 </Frame>
                             </StackLayout>
@@ -161,7 +179,7 @@
                                   FontSize="22" 
                                   FontAttributes="Bold" 
                                   TextColor="#512DA8"/>
-                            <Span Text="954"
+                            <Span Text="{Binding total}"
                                   FontSize="22" 
                                   FontAttributes="Bold" 
                                   TextColor="#512DA8"/>

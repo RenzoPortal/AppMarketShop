@@ -56,7 +56,7 @@
                             VerticalScrollBarVisibility="Never" 
                             ItemsSource="{Binding GetProducts}"
                             SelectionMode="Single"
-                            SelectionChangedCommand="{Binding SelectCommand}"
+                            SelectionChanged="CollectionProduct_SelectionChanged"
                             VerticalOptions="StartAndExpand">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
@@ -109,6 +109,19 @@
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
+                                    <Label Grid.Row="3"
+                                               Text="{Binding Id}"
+                                               FontSize="10"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               IsVisible="False"
+                                               HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding Description}"
+                                               FontSize="10"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               IsVisible="False"
+                                               HorizontalTextAlignment="Center"/>
                                 </Grid>
                             </Frame>
                         </StackLayout>

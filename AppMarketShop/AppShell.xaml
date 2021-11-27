@@ -42,7 +42,6 @@
                 <local:ProfilePage/>
             </ShellContent>
         </Tab>
-        <!--Definimos el Tab y nos llevara al CartPage-->
         <Tab Icon="Cart.png">
             <ShellContent>
                 <local:CartPage/>

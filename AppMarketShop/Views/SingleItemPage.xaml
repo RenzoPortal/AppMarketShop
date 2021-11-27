@@ -35,12 +35,17 @@
                 <!--Datos Producto-->
                 <Frame Grid.Row="2"
                        BackgroundColor="White"
-                       HeightRequest="520"
+                       HeightRequest="620"
                        CornerRadius="30"
                        Padding="35,0,35,0">
                     <!--Grid con 7 filas-->
-                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
                         <!--Nombre-->
+                        <Label x:Name="txtid" Grid.Row="1"
+                           Text="id"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           IsVisible="False"/>
                         <Label x:Name="txtnombre" Grid.Row="0"
                            Text="2020 Apple iPad Air 10.9"
                            TextColor="Black"
@@ -128,10 +133,11 @@
                         <Entry x:Name="txtcantidad"  
                                Grid.Row="6" 
                                Text="1" 
-                               Keyboard="Numeric" 
-                               IsVisible="False"/>
+                               Placeholder="Cantidad"
+                               Keyboard="Numeric"/>
                         <!--Boton agregar al carrito-->
-                        <Button Grid.Row="6"
+                        <Button x:Name="AddToCart"
+                                Grid.Row="7"
                                 Text="Add to basket"
                                 BackgroundColor="#512DA8"
                                 TextColor="White"
@@ -139,7 +145,7 @@
                                 HorizontalOptions="FillAndExpand"
                                 HeightRequest="65"
                                 Margin="0,0,0,20"
-                                Command="{Binding AddToCartCommand}"/>
+                                Clicked="AddToCart_Clicked"/>
                     </Grid>
                 </Frame>
                 <Frame Grid.Row="6"

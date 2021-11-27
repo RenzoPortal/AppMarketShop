@@ -13,7 +13,6 @@ namespace AppMarketShop.Models
         public int Id { get; set; }
         [MaxLength(50)]
         public string Name { get; set; }
-        [OneToMany(CascadeOperations = CascadeOperation.All)]
-        public List<Product> Products { get; set; }
+        public string Image { get; set; }
     }
 }

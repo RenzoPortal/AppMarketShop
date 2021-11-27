@@ -22,12 +22,12 @@
                 <!--Registro-->
                 <Frame Grid.Row="1"
                        BackgroundColor="White"
-                       HeightRequest="510"
+                       HeightRequest="610"
                        CornerRadius="30"
                        HasShadow="False">
                     <!--Grid con 2 columnas y 9 filas-->
                     <Grid ColumnDefinitions="*,Auto"
-                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
                         <!--Subtítulo-->
                         <Label Grid.Row="0"
                                Grid.Column="0"
@@ -36,10 +36,30 @@
                                FontSize="18"
                                FontAttributes="Bold"
                                Padding="20,14,0,30"/>
-                        <!--Diseño horizontal Email-->
+                        <!--Diseño horizontal Name Full-->
                         <StackLayout Grid.Column="0" 
                                      Grid.ColumnSpan="2" 
                                      Grid.Row="1" 
+                                     Orientation="Horizontal" 
+                                     Spacing="10"
+                                     Padding="20,0,0,0">
+                            <Image Source="User.png" 
+                                   WidthRequest="24" 
+                                   HeightRequest="24"/>
+                            <Label FontSize="16"
+                                   Text="Full Name"/>
+                        </StackLayout>
+
+                        <!--Entrada de Full Name-->
+                        <Entry Grid.Row="2"
+                               Keyboard="Text"
+                               Margin="20,-15,20,30"
+                               FontAttributes="Bold"
+                               Text="{Binding FullNametxt}"/>
+                        <!--Diseño horizontal Email-->
+                        <StackLayout Grid.Column="0" 
+                                     Grid.ColumnSpan="2" 
+                                     Grid.Row="3" 
                                      Orientation="Horizontal" 
                                      Spacing="10"
                                      Padding="20,0,0,0">
@@ -49,32 +69,14 @@
                             <Label FontSize="16"
                                    Text="Email"/>
                         </StackLayout>
+                        
                         <!--Entrada de Email-->
-                        <Entry Grid.Row="2"
+                        <Entry Grid.Row="4"
                                Keyboard="Email"
                                Margin="20,-15,20,30"
                                FontAttributes="Bold"
                                Text="{Binding EmailTxt}"/>
                         <!--Diseño horizontal Passwprd-->
-                        <StackLayout Grid.Column="0" 
-                                     Grid.ColumnSpan="2" 
-                                     Grid.Row="3" 
-                                     Orientation="Horizontal" 
-                                     Spacing="10"
-                                     Padding="20,0,0,0">
-                            <Image Source="Password.png" 
-                                   WidthRequest="24" 
-                                   HeightRequest="24"/>
-                            <Label FontSize="16"
-                                   Text="Password"/>
-                        </StackLayout>
-                        <!--Entrada de Password-->
-                        <Entry Grid.Row="4"
-                               IsPassword="True"
-                               Margin="20,-15,20,30"
-                               FontAttributes="Bold"
-                               Text="{Binding PasswordTxt}"/>
-                        <!--Diseño horizontal Confirmar Passwprd-->
                         <StackLayout Grid.Column="0" 
                                      Grid.ColumnSpan="2" 
                                      Grid.Row="5" 
@@ -85,16 +87,35 @@
                                    WidthRequest="24" 
                                    HeightRequest="24"/>
                             <Label FontSize="16"
+                                   Text="Password"/>
+                        </StackLayout>
+                        <!--Entrada de Password-->
+                        <Entry Grid.Row="6"
+                               IsPassword="True"
+                               Margin="20,-15,20,30"
+                               FontAttributes="Bold"
+                               Text="{Binding PasswordTxt}"/>
+                        <!--Diseño horizontal Confirmar Passwprd-->
+                        <StackLayout Grid.Column="0" 
+                                     Grid.ColumnSpan="2" 
+                                     Grid.Row="7" 
+                                     Orientation="Horizontal" 
+                                     Spacing="10"
+                                     Padding="20,0,0,0">
+                            <Image Source="Password.png" 
+                                   WidthRequest="24" 
+                                   HeightRequest="24"/>
+                            <Label FontSize="16"
                                    Text="Confirm Password"/>
                         </StackLayout>
                         <!--Entrada de Confirmar Password-->
-                        <Entry Grid.Row="6"
+                        <Entry Grid.Row="8"
                                IsPassword="True"
                                Margin="20,-15,20,15"
                                FontAttributes="Bold"
                                Text="{Binding ConPasswordTxt}"/>
                         <!--Boton registrar-->
-                        <Button Grid.Row="7"
+                        <Button Grid.Row="9"
                                 Text="Register"
                                 BackgroundColor="#512DA8"
                                 TextColor="White"
@@ -105,7 +126,7 @@
                                 Margin="0,30,0,15"
                                 Command="{Binding RegisterCommand}"/>
                         <!--Iniciar sesion-->
-                        <Label Grid.Row="8"
+                        <Label Grid.Row="10"
                                Grid.Column="0"
                                Text="Back"
                                TextColor="#5956E9"

@@ -12,14 +12,14 @@
                     HorizontalOptions="FillAndExpand">
             <!--Definimos el Grid con 5 filas y 1 columna-->
             <Grid ColumnDefinitions="Auto" 
-                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
                   Padding="30,40,0,0">
                 <!--Buscador usando SfAutoComplete-->
                 <Frame Grid.Row="0"
                        Grid.Column="0"
                        Padding="0"
                        HeightRequest="55"
-                       WidthRequest="330"
+                       WidthRequest="300"
                        CornerRadius="30"
                        BackgroundColor="White"
                        HorizontalOptions="Start">
@@ -45,42 +45,61 @@
                        TextColor="Black"
                        Padding="0,35"/>
                 <!--Lista de Categorias-->
-                <CollectionView Grid.Row="2"
+                <CollectionView x:Name="ShowCategory" 
+                                Grid.Row="2"
                                 Margin="0"
                                 ItemsSource="{Binding GetCategories}" 
                                 SelectionMode="Single"
                                 ItemsLayout="HorizontalList"
                                 HorizontalScrollBarVisibility="Never"
-                                HeightRequest="30">
+                                SelectionChanged="ShowCategory_SelectionChanged"
+                                HeightRequest="100">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Margin="0,0,24,0"
-                                         Padding="0">
+                                         Padding="0,0,10,0">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup Name="CommonStates">
                                         <VisualState Name="Normal" />
                                         <VisualState Name="Selected">
                                             <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="LightGray" />
+                                                <Setter Property="BackgroundColor" Value="#F5F5F8" />
                                             </VisualState.Setters>
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <!--Nombre de las categorias-->
-                                <Label Grid.Row="1" 
-                                       Text="{Binding Name}" 
-                                       VerticalOptions="End" 
-                                       HorizontalTextAlignment="Center" 
-                                       TextColor="#9A9A9D" 
-                                       FontSize="17"/>
+                                <Frame WidthRequest="80"
+                                       HeightRequest="90"
+                                       CornerRadius="12"
+                                       HasShadow="False"
+                                       Padding="0">
+                                    <StackLayout>
+                                        <Image Source="{Binding Image}"
+                                               HorizontalOptions="Center"
+                                               Margin="0,5"/>
+                                        <Label Text="{Binding Name}" 
+                                               VerticalOptions="End" 
+                                               HorizontalTextAlignment="Center" 
+                                               TextColor="#5956E9" 
+                                               FontSize="17"/>
+                                        <Label Text="{Binding Id}"
+                                               IsVisible="False"/>
+                                    </StackLayout>
+                                </Frame>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
 
                 </CollectionView>
+                <Label Grid.Row="3"
+                       Text="New Products"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       Padding="0,20,0,0"/>
                 <!--Lista de productos-->
-                <CollectionView x:Name="SelecProd" Grid.Row="3"
-                                Margin="0,30,0,0" 
+                <CollectionView x:Name="SelecProd" Grid.Row="4"
+                                Margin="0,20,0,0" 
                                 ItemsSource="{Binding GetProducts}"
                                 SelectionMode="Single"
                                 SelectionChanged="SelecProd_SelectionChanged"
@@ -163,13 +182,13 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 <!--Ver mas-->
-                <StackLayout Grid.Row="4" 
+                <StackLayout Grid.Row="5" 
                              Orientation="Horizontal" 
                              Spacing="10"
                              HorizontalOptions="End"
                              Margin="0,20,30,40">
 
-                    <Label Grid.Row="4"
+                    <Label Grid.Row="5"
                            Text="see more"
                            FontSize="18"
                            TextColor="#512DA8">

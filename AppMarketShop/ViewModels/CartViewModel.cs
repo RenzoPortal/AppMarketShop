@@ -1,4 +1,5 @@
-﻿using AppMarketShop.Models;
+﻿using AppMarketShop.Data;
+using AppMarketShop.Models;
 using AppMarketShop.Views;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,19 @@ namespace AppMarketShop.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
+        public float _total;
+        public float total
+        {
+            get
+            {
+                return _total;
+            }
+            set
+            {
+                _total = value;
+                OnPropertyChanged();
+            }
+        }
         //Comandos para llevarnos CheckoutPage 
         public Command _CheckOutCommand;
         public Command _BackCommand;
@@ -40,27 +54,40 @@ namespace AppMarketShop.ViewModels
         public CartViewModel()
         {
             //Mostrando CollectionsViews
-            prodCarts = GetProdCart();
+            ShowDataTemporal();
+
+
         }
         //Usando los Product
-        ObservableCollection<Product> prodCarts;
-        public ObservableCollection< Product> prodCart
+        ObservableCollection<DataTemporal> dataTemporals = new ObservableCollection<DataTemporal>();
+        public ObservableCollection<DataTemporal> GetDataTemporal
         {
-            get { return prodCarts; }
+            get { return dataTemporals; }
             set
             {
-                prodCarts = value;
+                dataTemporals = value;
                 OnPropertyChanged();
             }
         }
-        //Insertado datos a Product
-        private ObservableCollection<Product> GetProdCart()
+        private void ShowDataTemporal()
         {
-            return new ObservableCollection<Product>
+            DataLogic dataLogic = new DataLogic();
+            var lstDataTenporal = dataLogic.ShowDataTemporal();
+            foreach (var datatempDetails in lstDataTenporal)
             {
-                new Product{ Image="SearchiPad.png", Name="2020 Apple iPad Air 10.9", Price =579 },
-                new Product{ Image="AirPods.png", Name="APPLE AirPods Pro - White", Price =375 },
-            };
+                DataTemporal datatemp = new DataTemporal
+                {
+                    IdProduct = datatempDetails.IdProduct,
+                    Nombre = datatempDetails.Nombre,
+                    Cantidad = datatempDetails.Cantidad,
+                    Precio = datatempDetails.Precio,
+                    Total = datatempDetails.Total
+
+                };
+                GetDataTemporal.Add(datatemp);
+                total += datatempDetails.Total;
+            }
+
         }
         //Metodos
         private void BackToPage(object obj)
