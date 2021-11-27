@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AppMarketShop.Data
@@ -132,6 +133,11 @@ namespace AppMarketShop.Data
         {
             var lstDataTenporal = from dataTemporal in conn.Table<DataTemporal>() select dataTemporal;
             return lstDataTenporal;
+        }
+        public void DeleteAllCart()
+        {
+            conn.DeleteAll<DataTemporal>();
+            conn.Close();
         }
     }
 }

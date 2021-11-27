@@ -36,7 +36,8 @@ namespace AppMarketShop.Views
         {
             Models.Category model = e.CurrentSelection.FirstOrDefault() as Models.Category;
             int id = model.Id;
-            Navigation.PushModalAsync(new ListProduct(id));
+            string name = model.Name;
+            Navigation.PushModalAsync(new ListProduct(id, name));
         }
     }
 }

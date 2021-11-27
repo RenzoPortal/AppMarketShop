@@ -19,7 +19,7 @@
                        Grid.Column="0"
                        Padding="0"
                        HeightRequest="55"
-                       WidthRequest="300"
+                       WidthRequest="330"
                        CornerRadius="30"
                        BackgroundColor="White"
                        HorizontalOptions="Start">
@@ -128,7 +128,7 @@
                                           Margin="20">
                                         <!--Imagen circular-->
                                         <Frame WidthRequest="180" 
-                                               HeightRequest="180"
+                                               HeightRequest="160"
                                                HasShadow="False" 
                                                CornerRadius="150" 
                                                IsClippedToBounds="True"

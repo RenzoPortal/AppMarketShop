@@ -78,6 +78,7 @@ namespace AppMarketShop.ViewModels
                 DataTemporal datatemp = new DataTemporal
                 {
                     IdProduct = datatempDetails.IdProduct,
+                    Image = datatempDetails.Image,
                     Nombre = datatempDetails.Nombre,
                     Cantidad = datatempDetails.Cantidad,
                     Precio = datatempDetails.Precio,

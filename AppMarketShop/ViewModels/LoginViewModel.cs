@@ -51,6 +51,7 @@ namespace AppMarketShop.ViewModels
                 Preferences.Set("Email", success.Email);
                 Preferences.Set("FullName", success.FullName);
                 var id = Preferences.Get("IdUser", 0);
+                var ema = Preferences.Get("Email", "");
                 App.Current.MainPage = new AppShell();
             }
             else

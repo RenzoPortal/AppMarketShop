@@ -13,12 +13,16 @@ namespace AppMarketShop.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListProduct : ContentPage
     {
-        public ListProduct( int id)
+        public ListProduct( int id, string name)
         {
             InitializeComponent();
             HomeViewModel prodcate = new HomeViewModel();
             prodcate.ListProdCategory(id);
             CollectionProductCate.ItemsSource = prodcate.GetProductsCategory;
+
+            BindingContext = new CategoryViewModel();
+
+            namecatetxt.Text = name;
         }
     }
 }

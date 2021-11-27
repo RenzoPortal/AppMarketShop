@@ -1,5 +1,6 @@
 ﻿using AppMarketShop.Views;
 using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,17 @@ namespace AppMarketShop
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPage());
+            //MainPage = new NavigationPage(new MainPage());
+
+            string email = Preferences.Get("Email", "");
+            if (String.IsNullOrEmpty(email))
+            {
+                MainPage = new NavigationPage(new MainPage());
+            }
+            else
+            {
+                MainPage = new AppShell();
+            }
         }
 
         protected override void OnStart()

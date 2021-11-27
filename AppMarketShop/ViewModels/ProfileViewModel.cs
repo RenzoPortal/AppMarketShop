@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AppMarketShop.ViewModels
@@ -39,6 +40,7 @@ namespace AppMarketShop.ViewModels
         }
         private void SignOutPage(object obj)
         {
+            Preferences.Remove("Email");
             App.Current.MainPage.Navigation.PushAsync(new LoginPage());
         }
     }

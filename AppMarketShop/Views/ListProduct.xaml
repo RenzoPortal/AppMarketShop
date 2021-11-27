@@ -12,7 +12,7 @@
                      BackgroundColor="Transparent"
                      Command ="{Binding BackCommand}"/>
         <!--Titulo-->
-        <Label Grid.Row="0"
+        <Label x:Name="namecatetxt" Grid.Row="0"
                Grid.Column="0"
                Grid.ColumnSpan="2"
                Text="Category"

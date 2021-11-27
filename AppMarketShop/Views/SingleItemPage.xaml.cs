@@ -37,7 +37,7 @@ namespace AppMarketShop.Views
             int cantidad = Convert.ToInt32(txtcantidad.Text);
             float total = cantidad * precio;
             HomeViewModel pedido = new HomeViewModel();
-            bool success = pedido.AddToCart(id, nombre, precio, total, cantidad);
+            bool success = pedido.AddToCart(id, image, nombre, precio, total, cantidad);
             if (success)
             {
                 DisplayAlert("Success", "Se agrego al carrito", "Ok");

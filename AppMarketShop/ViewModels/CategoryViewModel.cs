@@ -1,4 +1,5 @@
 ﻿using AppMarketShop.Data;
+using AppMarketShop.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,11 @@ namespace AppMarketShop.ViewModels
 {
     public class CategoryViewModel : BaseViewModel
     {
-        public Command _AddCateCommand;
+        public Command _AddCateCommand;     
+        public Command _BackCommand;
         private string nametxt;
         private string imagetxt;
+   
         public ICommand AddCateCommand
         {
             get
@@ -21,6 +24,17 @@ namespace AppMarketShop.ViewModels
                     _AddCateCommand = new Command(AddCategory);
                 }
                 return _AddCateCommand;
+            }
+        }
+        public ICommand BackCommand
+        {
+            get
+            {
+                if (_BackCommand == null)
+                {
+                    _BackCommand = new Command(BackToPage);
+                }
+                return _BackCommand;
             }
         }
         public string NameTxt
@@ -61,6 +75,10 @@ namespace AppMarketShop.ViewModels
                 ImageTxt = string.Empty;
                 App.Current.MainPage.DisplayAlert("Success", "The category was added", "Ok");
             }
+        }
+        private void BackToPage(object obj)
+        {
+            App.Current.MainPage = new AppShell();
         }
     }
 }

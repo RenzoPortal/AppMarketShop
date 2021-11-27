@@ -71,10 +71,11 @@ namespace AppMarketShop.ViewModels
             }
         }
 
-        public bool AddToCart(int id, string nombre, float precio, float total, int cantidad)
+        public bool AddToCart(int id, string image, string nombre, float precio, float total, int cantidad)
         {
             DataTemporal tabla = new DataTemporal();
             tabla.IdProduct = id;
+            tabla.Image = image;
             tabla.Nombre = nombre;
             tabla.Precio = precio;
             tabla.Total = total;

@@ -66,10 +66,9 @@
                                 <Image Source="User.png" 
                                    WidthRequest="24" 
                                    HeightRequest="24"/>
-                            <Label Grid.Row="4"
+                            <Label x:Name="nametxt" Grid.Row="4"
                                    Text="rosina@company.com"
                                    FontSize="18"
-                                   FontAttributes="Bold"
                                    TextColor="Black"/>
                         </StackLayout>
                         <!--Direccion-->
@@ -78,12 +77,12 @@
                                      Spacing="10"
                                      HorizontalOptions="Start"
                                      Margin="30,15">
-                            <Image Source="Location.png" 
+                            <Image Source="Email.png" 
                                    WidthRequest="24" 
                                    HeightRequest="24"/>
-                            <Label Grid.Row="4"
+                            <Label x:Name="correotxt" Grid.Row="4"
                                    Text="Av, Tupac Amaru 3214"
-                                   FontSize="18"
+                                   FontSize="16"
                                    TextColor="Black"/>
                         </StackLayout>
                         <!--Telefono-->
