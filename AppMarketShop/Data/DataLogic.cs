@@ -112,6 +112,11 @@ namespace AppMarketShop.Data
             var lstProducts = from product in conn.Table<Product>() select product;
             return lstProducts;
         }
+        public IEnumerable<Product> ShowDataProductFilter(string Filter)
+        {
+            var lstProducts = from product in conn.Table<Product>().Where(p => p.Name.ToLower().Contains(Filter.ToLower())) select product;
+            return lstProducts;
+        }
         public IEnumerable<Product> ListProdCategory(int id)
         {
             var lstProducts = from product in conn.Table<Product>().Where(i => i.CategoryId == id) select product;

@@ -14,29 +14,6 @@
             <Grid ColumnDefinitions="Auto" 
                   RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
                   Padding="30,40,0,0">
-                <!--Buscador usando SfAutoComplete-->
-                <Frame Grid.Row="0"
-                       Grid.Column="0"
-                       Padding="0"
-                       HeightRequest="55"
-                       WidthRequest="330"
-                       CornerRadius="30"
-                       BackgroundColor="White"
-                       HorizontalOptions="Start">
-                    <!--Definimos el Grid con 2 columnas-->
-                    <Grid ColumnDefinitions="Auto,Auto"
-                          Margin="20,0">
-                        <Image HeightRequest="20" 
-                               WidthRequest="20" 
-                               Source="Search.png"/>
-                        <renderers:BorderlessEntry Grid.Column="1" 
-                                                   Grid.ColumnSpan="2"
-                                                   Margin="5"
-                                                   HorizontalOptions="FillAndExpand"
-                                                   VerticalOptions="Center"
-                                                   Placeholder="Search"/>
-                    </Grid>
-                </Frame>
                 <!--Titulo-->
                 <Label Grid.Row="1"
                        Text="Order online&#10;collect in store"

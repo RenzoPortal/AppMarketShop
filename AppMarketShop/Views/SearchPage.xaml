@@ -18,7 +18,7 @@
                          BackgroundColor="Transparent"
                          Command="{Binding BackCommand}"/>
             <!--Buscador usando SfAutoComplete-->
-            <Frame Grid.Row="0"
+            <!--<Frame Grid.Row="0"
                    Grid.Column="1"
                    Padding="0"
                    HeightRequest="55"
@@ -39,15 +39,31 @@
                                                VerticalOptions="Center"
                                                Placeholder="Search"/>
                 </Grid>
-            </Frame>
+            </Frame>-->
             <!--Resultado de Busqueda-->
-            <Label Grid.Row="1"
+            <Frame Grid.Row="0"
+                   Grid.Column="1"
+                   Padding="0"
+                   HeightRequest="55"
+                   WidthRequest="330"
+                   CornerRadius="30"
+                   BackgroundColor="White"
+                   HorizontalOptions="Start">
+                <SearchBar
+                    Placeholder="Buscar"
+                    SearchCommand="{Binding SearchCommand}"
+                    Text="{Binding Filter}"
+                    BackgroundColor="Transparent">
+                    
+                </SearchBar>
+            </Frame>
+            <!--<Label Grid.Row="1"
                    Grid.ColumnSpan="2"
                    Text="Found  4 results"
                    TextColor="Black"
                    FontSize="28"
                    HorizontalTextAlignment="Center"
-                   Padding="0,35,0,20"/>
+                   Padding="0,35,0,20"/>-->
             <!--Lista de productos-->
             <CollectionView x:Name="CollectionProduct" 
                             Grid.Column="0" 
@@ -57,7 +73,8 @@
                             ItemsSource="{Binding GetProducts}"
                             SelectionMode="Single"
                             SelectionChanged="CollectionProduct_SelectionChanged"
-                            VerticalOptions="StartAndExpand">
+                            VerticalOptions="StartAndExpand"
+                            Margin="0,20,0,0">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
                                      Span="2" />
@@ -76,7 +93,7 @@
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <Frame WidthRequest="156"
-                                   HeightRequest="263"
+                                   HeightRequest="270"
                                    CornerRadius="10"
                                    HasShadow="False"
                                    Padding="0">

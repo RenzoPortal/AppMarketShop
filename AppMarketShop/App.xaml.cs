@@ -11,12 +11,12 @@ namespace AppMarketShop
         public App()
         {
             InitializeComponent();
-            //MainPage = new NavigationPage(new MainPage());
+            //MainPage = new NavigationPage(new SearchPage());
 
             string email = Preferences.Get("Email", "");
             if (String.IsNullOrEmpty(email))
             {
-                MainPage = new NavigationPage(new MainPage());
+               MainPage = new NavigationPage(new MainPage());
             }
             else
             {

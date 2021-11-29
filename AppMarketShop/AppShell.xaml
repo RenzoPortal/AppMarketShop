@@ -36,6 +36,11 @@
                 <local:FavoritePage/>
             </ShellContent>
         </Tab>
+        <Tab Icon="Search1.png">
+            <ShellContent>
+                <local:SearchPage/>
+            </ShellContent>
+        </Tab>
         <!--Definimos el Tab y nos llevara al ProfilePage-->
         <Tab Icon="User.png">
             <ShellContent>
