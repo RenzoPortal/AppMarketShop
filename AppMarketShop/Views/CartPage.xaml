@@ -176,7 +176,7 @@
                                   FontSize="22" 
                                   FontAttributes="Bold" 
                                   TextColor="#512DA8"/>
-                            <Span Text="{Binding total}"
+                            <Span x:Name="txttotal" Text="{Binding total}"
                                   FontSize="22" 
                                   FontAttributes="Bold" 
                                   TextColor="#512DA8"/>
@@ -184,17 +184,17 @@
                     </Label.FormattedText>
                 </Label>
                 <!--Boton confirmar-->
-                <Button Grid.Row="4"
+                <Button x:Name="AddOrder" Grid.Row="4"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
-                        Text="Checkout"
+                        Text="Pay Now"
                         BackgroundColor="#512DA8"
                         TextColor="White"
                         CornerRadius="10"
                         HorizontalOptions="FillAndExpand"
                         HeightRequest="65"
                         Margin="0"
-                        Command="{Binding CheckOutCommand}"/>
+                        Clicked="AddOrder_Clicked"/>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

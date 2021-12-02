@@ -1,269 +1,282 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:flipper="clr-namespace:AppMarketShop.Extentions" 
+             xmlns:behavior="clr-namespace:AppMarketShop.Behaviors" 
+             xmlns:local="clr-namespace:AppMarketShop.ViewModels"
              x:Class="AppMarketShop.Views.CheckoutPage"
              BackgroundColor="#F5F5F8"
              NavigationPage.HasNavigationBar="False"
              Shell.TabBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <local:CreditCardEditViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <!--Vista de desplazamiento-->
-        <ScrollView VerticalScrollBarVisibility="Never">
-            <!--Grid con 9 filas y 2 columnas-->
-            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" 
-                  ColumnDefinitions="Auto,Auto"
+        <ScrollView Grid.Row="0">
+
+            <Grid Grid.Row="0" 
+                  RowDefinitions="auto, auto, auto, auto, *" 
+                  HorizontalOptions="FillAndExpand" 
                   Padding="30,40">
-                <!--Regresar-->
                 <ImageButton Grid.Row="0"
                              Source="ArrowBack.png"
                              HorizontalOptions="Start"
                              BackgroundColor="Transparent"
-                             Command ="{Binding BackCommand}"/>
-                <!--Titulo-->
+                             Command="{Binding CloseModalCommand}"
+                             Margin="0,0,0,20"/>
                 <Label Grid.Row="0"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       Text="Checkout"
-                       Margin="0"
+                       Text="Card"
                        FontSize="20"
                        TextColor="Black"
                        FontAttributes="Bold"
-                       HorizontalOptions="CenterAndExpand"/>
-                <!--Informacion de envio-->
-                <Label Grid.Row="1"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       Padding="0,40,0,10"
-                       Text="Shipping information"
-                       FontSize="18"
-                       TextColor="Black"/>
-                <!--Canbiar-->
-                <Label Grid.Row="1"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       Padding="0,40,0,10"
-                       Text="change"
-                       FontSize="16"
-                       HorizontalTextAlignment="End"
-                       TextColor="#5956E9"/>
-                <!--Datos del usuario-->
-                <Frame Grid.Row="2"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       HeightRequest="166"
-                       WidthRequest="300"
-                       CornerRadius="10"
-                       IsClippedToBounds="True"
-                       Padding="0,0,30,0"
-                       Margin="0,0,0,30">
-                    <Grid RowDefinitions="Auto,Auto,Auto"
-                          VerticalOptions="Center">
-                        <!--Correo-->
-                        <StackLayout Grid.Row="0" 
-                                     Orientation="Horizontal" 
-                                     Spacing="10"
-                                     HorizontalOptions="Start"
-                                     Margin="30,0">
-                                <Image Source="User.png" 
-                                   WidthRequest="24" 
-                                   HeightRequest="24"/>
-                            <Label x:Name="nametxt" Grid.Row="4"
-                                   Text="rosina@company.com"
-                                   FontSize="18"
-                                   TextColor="Black"/>
-                        </StackLayout>
-                        <!--Direccion-->
-                        <StackLayout Grid.Row="1" 
-                                     Orientation="Horizontal" 
-                                     Spacing="10"
-                                     HorizontalOptions="Start"
-                                     Margin="30,15">
-                            <Image Source="Email.png" 
-                                   WidthRequest="24" 
-                                   HeightRequest="24"/>
-                            <Label x:Name="correotxt" Grid.Row="4"
-                                   Text="Av, Tupac Amaru 3214"
-                                   FontSize="16"
-                                   TextColor="Black"/>
-                        </StackLayout>
-                        <!--Telefono-->
-                        <StackLayout Grid.Row="2" 
-                                     Orientation="Horizontal" 
-                                     Spacing="10"
-                                     HorizontalOptions="Start"
-                                     Margin="30,0">
-                            <Image Source="Call.png" 
-                                   WidthRequest="24" 
-                                   HeightRequest="24"/>
-                            <Label Grid.Row="4"
-                                   Text="+234 9011039271"
-                                   FontSize="18"
-                                   TextColor="Black"/>
-                        </StackLayout>
-                    </Grid>
-                </Frame>
-                <!--Metodos de pago-->
-                <Label Grid.Row="3"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       Padding="0,20,0,10"
-                       Text="Payment Method"
-                       FontSize="18"
-                       TextColor="Black"/>
-                <!--Yape-->
-                <Frame Grid.Row="4"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       HeightRequest="70"
-                       WidthRequest="300"
+                       HorizontalOptions="CenterAndExpand"
+                       Padding="0,0,0,0"/>
+                <Frame Grid.Row="1" Padding="10,15,10,15"
                        CornerRadius="20"
-                       IsClippedToBounds="True"
-                       Padding="0"
-                       Margin="0">
-                    <Grid ColumnDefinitions="Auto,Auto,Auto"
-                          RowDefinitions="Auto,Auto"
-                          VerticalOptions="Center"
-                          Padding="20,0">
-                        <Image Grid.Column="0"
-                               Grid.RowSpan="2"
-                               HorizontalOptions="Start"
-                               Source="Yape.png"
-                               HeightRequest="40"
-                               WidthRequest="40"
-                               Margin="0,0,10,0"/>
-                        <Label Grid.Row="0"
-                               Grid.Column="1"
-                               Grid.RowSpan="2"
-                               Text="Yape"
-                               FontSize="17"
-                               FontAttributes="Bold"
-                               TextColor="Black"
-                               VerticalOptions="Center"/>
-                        <CheckBox x:Name="CheckYape" 
-                                  Grid.Column="2"
-                                  Grid.ColumnSpan="2"
-                                  Grid.RowSpan="2"
-                                  HorizontalOptions="End"
-                                  VerticalOptions="Center"
-                                  Color="#5956E9"/>
-                    </Grid>
+                       HasShadow="False">
+                    <StackLayout>
+                        <flipper:ViewFlipper FlipState="{Binding CardSimulationInfo.FlipState}">
+                            <flipper:ViewFlipper.FrontView>
+                                <!--FrontCard-->
+                                <Frame HeightRequest="180" Padding="10" CornerRadius="20">
+                                    <Frame.Background>
+                                        <LinearGradientBrush EndPoint="0,1">
+                                            <GradientStop Color="SkyBlue" 
+                                                          Offset="0.1" />
+                                            <GradientStop Color="Blue" 
+                                                          Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Frame.Background>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Image x:Name="imgLogoCard" 
+                                               Grid.Row="0" 
+                                               HorizontalOptions="End" 
+                                               Source="{Binding LogoCreditCard.Source}" 
+                                               PropertyChanged="Image_PropertyChanged" 
+                                               Margin="0,0,15,0"/>
+                                        <StackLayout Grid.Row="1">
+                                            <Frame Padding="10" 
+                                                   Margin="5" 
+                                                   BorderColor="{Binding Number.BorderSpot.BorderColor}" 
+                                                   BackgroundColor="Transparent" 
+                                                   CornerRadius="15" 
+                                                   HasShadow="False">
+                                                <Label x:Name="lbNumberValue" 
+                                                       Text="XXXX XXXX XXXX XXXX" 
+                                                       FontSize="Medium"/>
+                                            </Frame>
+                                            <Grid ColumnSpacing="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <!--Name-->
+                                                <StackLayout Grid.Column="0" Spacing="0">
+                                                    <Label Margin="15,0,0,0" 
+                                                           Text="Card holder name"  
+                                                           FontSize="Micro" 
+                                                           FontAttributes="Bold"
+                                                           TextColor="White"/>
+                                                    <Frame Padding="10" 
+                                                           Margin="5,0,0,15" 
+                                                           BorderColor="{Binding Name.BorderSpot.BorderColor}" 
+                                                           BackgroundColor="Transparent" 
+                                                           CornerRadius="15" 
+                                                           HasShadow="False">
+                                                        <Label x:Name="lbNameValue" 
+                                                               Text="Name Surname" 
+                                                               TextColor="White"
+                                                               FontSize="Small"/>
+                                                    </Frame>
+                                                </StackLayout>
+                                                <!--Validated-->
+                                                <StackLayout Grid.Column="1" 
+                                                             Spacing="0">
+                                                    <Label Margin="0,0,15,0" 
+                                                           Text="Valid thru" 
+                                                           TextColor="White"
+                                                           HorizontalOptions="End" 
+                                                           FontSize="Micro" 
+                                                           FontAttributes="Bold"/>
+                                                    <Frame Padding="10" 
+                                                           Margin="0,0,5,15"
+                                                           BorderColor="{Binding Valid.BorderSpot.BorderColor}" 
+                                                           BackgroundColor="Transparent" 
+                                                           CornerRadius="15" 
+                                                           HasShadow="False">
+                                                        <Label x:Name="lbValidValue" 
+                                                               Text="MM/YY" 
+                                                               TextColor="White"
+                                                               FontSize="Small"  
+                                                               HorizontalOptions="End"/>
+                                                    </Frame>
+                                                </StackLayout>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </flipper:ViewFlipper.FrontView>
+                            <flipper:ViewFlipper.BackView>
+                                <!--BackCard-->
+                                <Frame HeightRequest="180" Padding="0,10" CornerRadius="20">
+                                    <Frame.Background>
+                                        <LinearGradientBrush EndPoint="0,1">
+                                            <GradientStop Color="SkyBlue" 
+                                                          Offset="0.1" />
+                                            <GradientStop Color="Blue" 
+                                                          Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Frame.Background>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackLayout Grid.Row="0" 
+                                                     Spacing="15">
+                                            <StackLayout BackgroundColor="Black" 
+                                                         HeightRequest="50" 
+                                                         Margin="0,10,0,0"/>
+                                            <Grid ColumnSpacing="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="0.5*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" 
+                                                       Margin="15,0,0,0" 
+                                                       Text="" 
+                                                       MaxLines="3"/>
+                                                <Frame Grid.Column="1" 
+                                                       Padding="10" 
+                                                       BorderColor="{Binding Cvv.BorderSpot.BorderColor}" 
+                                                       BackgroundColor="Transparent" 
+                                                       CornerRadius="15" 
+                                                       Margin="0,0,10,0" 
+                                                       HasShadow="False">
+                                                    <StackLayout Padding="10" 
+                                                                 BackgroundColor="WhiteSmoke">
+                                                        <Label x:Name="lbCvvValue" 
+                                                               Text="CVV" 
+                                                               FontSize="Small" 
+                                                               FontAttributes="Bold" 
+                                                               HorizontalOptions="CenterAndExpand" 
+                                                               VerticalOptions="CenterAndExpand"/>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </Grid>
+                                        </StackLayout>
+                                        <Image Grid.Row="1" 
+                                               HorizontalOptions="End" 
+                                               Source="{Binding LogoCreditCard.Source}" 
+                                               Margin="0,0,15,0"/>
+                                    </Grid>
+                                </Frame>
+                            </flipper:ViewFlipper.BackView>
+                        </flipper:ViewFlipper>
+                    </StackLayout>
                 </Frame>
-                <!--Plin-->
-                <Frame Grid.Row="5"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       HeightRequest="70"
-                       WidthRequest="300"
-                       CornerRadius="20"
-                       IsClippedToBounds="True"
-                       Padding="0"
-                       Margin="0,10">
-                    <Grid ColumnDefinitions="Auto,Auto,Auto"
-                          RowDefinitions="Auto,Auto"
-                          VerticalOptions="Center"
-                          Padding="20,0">
-                        <Image Grid.Column="0"
-                               Grid.RowSpan="2"
-                               HorizontalOptions="Start"
-                               Source="Plin.png"
-                               HeightRequest="40"
-                               WidthRequest="40"
-                               Margin="0,0,10,0"/>
-                        <Label Grid.Row="0"
-                               Grid.Column="1"
-                               Grid.RowSpan="2"
-                               Text="Plin"
-                               FontSize="17"
-                               FontAttributes="Bold"
-                               TextColor="Black"
-                               VerticalOptions="Center"/>
-                        <CheckBox x:Name="CheckPlin" 
-                                  Grid.Column="2"
-                                  Grid.ColumnSpan="2"
-                                  Grid.RowSpan="2"
-                                  HorizontalOptions="End"
-                                  VerticalOptions="Center"
-                                  Color="#5956E9"/>
-                    </Grid>
-                </Frame>
-                <!--Agora-->
-                <Frame Grid.Row="6"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       HeightRequest="70"
-                       WidthRequest="300"
-                       CornerRadius="20"
-                       IsClippedToBounds="True"
-                       Padding="0"
-                       Margin="0,0,0,40">
-                    <Grid ColumnDefinitions="Auto,Auto,Auto"
-                          RowDefinitions="Auto,Auto"
-                          VerticalOptions="Center"
-                          Padding="20,0">
-                        <Image Grid.Column="0"
-                               Grid.RowSpan="2"
-                               HorizontalOptions="Start"
-                               Source="Agora.png"
-                               HeightRequest="40"
-                               WidthRequest="40"
-                               Margin="0,0,10,0"/>
-                        <Label Grid.Row="0"
-                               Grid.Column="1"
-                               Grid.RowSpan="2"
-                               Text="Agora"
-                               FontSize="17"
-                               FontAttributes="Bold"
-                               TextColor="Black"
-                               VerticalOptions="Center"/>
-                        <CheckBox x:Name="CheckAgora" 
-                                  Grid.Column="2"
-                                  Grid.ColumnSpan="2"
-                                  Grid.RowSpan="2"
-                                  HorizontalOptions="End"
-                                  VerticalOptions="Center"
-                                  IsChecked="true"
-                                  Color="#5956E9"/>
-                    </Grid>
-                </Frame>
-                <!--Total a pagar-->
-                <Label Grid.Row="7"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       Margin="0,20"
-                       Text="Total"
-                       FontSize="18"
-                       TextColor="Black"/>
-                <!--Precio-->
-                <Label Grid.Row="7" 
-                       Grid.Column="1"
-                       Grid.ColumnSpan="2"
-                       Padding="0,0,20,30" 
-                       Margin="0,20"
-                       HorizontalOptions="End">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="S/" 
-                                  FontSize="22" 
-                                  FontAttributes="Bold" 
-                                  TextColor="#512DA8"/>
-                            <Span Text="954"
-                                  FontSize="22" 
-                                  FontAttributes="Bold" 
-                                  TextColor="#512DA8"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <!--Boton comprar-->
-                <Button Grid.Row="8"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Text="Confirm and pay"
-                        BackgroundColor="#512DA8"
-                        TextColor="White"
-                        CornerRadius="10"
-                        HorizontalOptions="FillAndExpand"
-                        HeightRequest="65"
-                        Margin="0"
-                        Command="{Binding PaymentCommand}"/>
+                <Label Text="Type in your card details: " 
+                       Grid.Row="2" 
+                       FontAttributes="Bold" 
+                       TextColor="Black"
+                       FontSize="Title" 
+                       Margin="15,0,0,10"/>
+
+                <Grid ColumnDefinitions="*, auto" Grid.Row="3" Padding="15,0">
+                    <StackLayout Grid.Column="0">
+                        <!--Card Number-->
+                        <StackLayout IsVisible="{Binding Number.Panel.IsVisible}" 
+                                     PropertyChanged="StackLayout_PropertyChanged" 
+                                     Spacing="0">
+                            <Label Text="Card Number"
+                                   TextColor="Black"/>
+                            <Entry x:Name="entryNumber" 
+                                   Text="{Binding Number.Entry.Text}" 
+                                   Keyboard="Numeric" TextChanged="Entry_TextChanged" 
+                                   FontSize="Title" ReturnType="Next" 
+                                   ReturnCommand="{Binding NextCommand}">
+                                <Entry.Behaviors>
+                                    <behavior:MaskedBehavior Mask="XXXX XXXX XXXX XXXX" />
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label IsVisible="{Binding Number.ErrorMsg.IsVisible}" 
+                                   Text="{Binding Number.ErrorMsg.Text}" 
+                                   TextColor="Red"/>
+                        </StackLayout>
+
+                        <!--Card Holder Name-->
+                        <StackLayout IsVisible="{Binding Name.Panel.IsVisible}" 
+                                     PropertyChanged="StackLayout_PropertyChanged_1" 
+                                     Spacing="0">
+                            <Label Text="Card Holder Name"
+                                   TextColor="Black"/>
+                            <Entry x:Name="entryName" 
+                                   Text="{Binding Name.Entry.Text}" 
+                                   FontSize="Title" TextChanged="Entry_TextChanged_1" 
+                                   MaxLength="18" ReturnType="Next" ReturnCommand="{Binding NextCommand}" />
+                            <Label IsVisible="{Binding Name.ErrorMsg.IsVisible}" 
+                                   Text="{Binding Name.ErrorMsg.Text}" 
+                                   TextColor="Red"/>
+                        </StackLayout>
+
+                        <!--Valid-->
+                        <StackLayout IsVisible="{Binding Valid.Panel.IsVisible}" 
+                                     PropertyChanged="StackLayout_PropertyChanged_2" 
+                                     Spacing="0">
+                            <Label Text="Valid Thru"
+                                   TextColor="Black"/>
+                            <Entry x:Name="entryValid" 
+                                   Text="{Binding Valid.Entry.Text}" 
+                                   Keyboard="Numeric" FontSize="Title" 
+                                   TextChanged="Entry_TextChanged_2" 
+                                   ReturnType="Next" 
+                                   ReturnCommand="{Binding NextCommand}">
+                                <Entry.Behaviors>
+                                    <behavior:MaskedBehavior Mask="XX/XX" />
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label IsVisible="{Binding Valid.ErrorMsg.IsVisible}" 
+                                   Text="{Binding Valid.ErrorMsg.Text}" 
+                                   TextColor="Red"/>
+                        </StackLayout>
+
+                        <!--CCV-->
+                        <StackLayout IsVisible="{Binding Cvv.Panel.IsVisible}"
+                                     PropertyChanged="StackLayout_PropertyChanged_3" 
+                                     Spacing="0">
+                            <Label Text="CVV"
+                                   TextColor="Black"/>
+                            <Entry x:Name="entryCvv" 
+                                   Text="{Binding Cvv.Entry.Text}"
+                                   Keyboard="Numeric" FontSize="Title"
+                                   TextChanged="Entry_TextChanged_3"
+                                   MaxLength="4" ReturnType="Next" 
+                                   ReturnCommand="{Binding NextCommand}" />
+                            <Label IsVisible="{Binding Cvv.ErrorMsg.IsVisible}" 
+                                   Text="{Binding Cvv.ErrorMsg.Text}" 
+                                   TextColor="Red"/>
+                        </StackLayout>
+                    </StackLayout>
+
+
+                    <Frame Grid.Column="1"
+                           CornerRadius="20" 
+                           Padding="25,10"
+                           VerticalOptions="Center">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NextCommand}"/>
+                        </Frame.GestureRecognizers>
+                        <Label Text="{Binding ButtonText.Text}" 
+                               FontAttributes="Bold" 
+                               FontSize="Medium"  
+                               HorizontalOptions="Center" />
+                    </Frame>
+                </Grid>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

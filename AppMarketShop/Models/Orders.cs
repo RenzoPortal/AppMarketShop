@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AppMarketShop.Models
 {
-    public class Order
+    public class Orders
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -16,5 +16,7 @@ namespace AppMarketShop.Models
         public string Name { get; set; }
         [MaxLength(50)]
         public string Email { get; set; }
+        [MaxLength(50)]
+        public float Total { get; set; }
     }
 }

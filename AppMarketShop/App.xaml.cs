@@ -11,7 +11,7 @@ namespace AppMarketShop
         public App()
         {
             InitializeComponent();
-            //MainPage = new NavigationPage(new SearchPage());
+            //MainPage = new NavigationPage(new CheckoutPage());
 
             string email = Preferences.Get("Email", "");
             if (String.IsNullOrEmpty(email))

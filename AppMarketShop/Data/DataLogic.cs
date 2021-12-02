@@ -16,8 +16,9 @@ namespace AppMarketShop.Data
         private Category category;
         private Product product;
         private DataTemporal dataTemporal;
-        private Order order;
+        private Orders order;
         private OrderDetail orderDetail;
+        private int id;
         public DataLogic()
         {
             conn = DependencyService.Get<ISQLite>().GetConnection();
@@ -25,8 +26,8 @@ namespace AppMarketShop.Data
             conn.CreateTable<Category>();
             conn.CreateTable<Product>();
             conn.CreateTable<Cart>();
-            conn.CreateTable<Order>();
             conn.CreateTable<OrderDetail>();
+            conn.CreateTable<Orders>();
             conn.CreateTable<DataTemporal>();
         }
         public bool RegisterUser(string fullname, string email, string pass)
@@ -143,6 +144,56 @@ namespace AppMarketShop.Data
         {
             conn.DeleteAll<DataTemporal>();
             conn.Close();
+        }
+        public bool RegisterPedido(List<OrderDetail> orderDetails, float total)
+        {
+            var ID = Convert.ToInt32(Preferences.Get("IdUser", 0));
+            var Name = Preferences.Get("FullName", "");
+            var Email = Preferences.Get("Email", "");
+            order = new Orders
+            {
+                Email = Email,
+                UserId = ID,
+                Name = Name,
+                Total = total
+            };
+            try
+            {
+                conn.Insert(order);
+                var variable = conn.Query<Orders>("SELECT * FROM Orders WHERE ID = (SELECT MAX(ID) FROM Orders)").ToList();
+                foreach (var s in variable)
+                {
+                    id = s.Id;
+                }
+            }
+            catch (SQLiteException ex) { throw ex; }
+            catch (Exception ex) { throw ex; }
+            
+            try
+            {
+                foreach (var orderdetail in orderDetails)
+                {
+                    orderDetail = new OrderDetail
+                    {
+                        OrderId = id,
+                        ProductId = orderdetail.ProductId,
+                        Description = orderdetail.Description,
+                        Quantity = orderdetail.Quantity,
+                        Price = orderdetail.Price,
+                        Total = orderdetail.Total
+                    };
+                    conn.Insert(orderDetail);
+                }
+                return true;
+            }
+            catch (SQLiteException) { }
+            catch (Exception) { }
+            return false;
+        }
+        public IEnumerable<Orders> ShowDataOrders()
+        {
+            var lstOrders = from order in conn.Table<Orders>() select order;
+            return lstOrders;
         }
     }
 }

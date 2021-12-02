@@ -31,11 +31,11 @@
             </ShellContent>
         </Tab>
         <!--Definimos el Tab y nos llevara al HeartPage-->
-        <Tab Icon="Heart.png">
+        <!--<Tab Icon="Heart.png">
             <ShellContent>
                 <local:FavoritePage/>
             </ShellContent>
-        </Tab>
+        </Tab> -->
         <Tab Icon="Search1.png">
             <ShellContent>
                 <local:SearchPage/>

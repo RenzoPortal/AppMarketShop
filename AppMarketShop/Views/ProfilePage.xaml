@@ -118,10 +118,12 @@
                                FontSize="17"
                                FontAttributes="Bold"
                                TextColor="Black"/>
-                        <Image Grid.Column="1"
-                               Grid.ColumnSpan="2"
-                               HorizontalOptions="End"
-                               Source="ChevronLeft.png"/>
+                        <ImageButton Grid.Column="1"
+                                     Grid.ColumnSpan="2"
+                                     HorizontalOptions="End"
+                                     Source="ChevronLeft.png"
+                                     BackgroundColor="Transparent"
+                                     Command="{Binding OrderHistoryCommand}"/>
                     </Grid>
                 </Frame>
                 <!--Tarjetas-->

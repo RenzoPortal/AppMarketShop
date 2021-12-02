@@ -13,19 +13,12 @@ namespace AppMarketShop.ViewModels
     public class SingleItemViewModel : BaseViewModel
     {
         //Comandos para llevarnos CartPage
-        public Command _AddToCartCommand;
         public Command _BackCommand;
-        public ICommand AddToCartCommand
-        {
-            get
-            {
-                if (_AddToCartCommand == null)
-                {
-                    _AddToCartCommand = new Command(CartPage);
-                }
-                return _AddToCartCommand;
-            }
-        }
+        public Command _IncrementCommand;
+        public Command _DecrementCommand;
+
+        private int _TotalQuanity;
+
         public ICommand BackCommand
         {
             get
@@ -37,39 +30,61 @@ namespace AppMarketShop.ViewModels
                 return _BackCommand;
             }
         }
-        public SingleItemViewModel()
+        public ICommand DecrementCommand
         {
-            //Mostrando CollectionsViews
-            productcolors = GetProductColor();
+            get
+            {
+                if (_DecrementCommand == null)
+                {
+                    _DecrementCommand = new Command(DecrementOrder);
+                }
+                return _DecrementCommand;
+            }
         }
-        //Usando los ProdColor
-        ObservableCollection<ProdColor> productcolors;
-        public ObservableCollection<ProdColor> productColor
+        public ICommand IncrementCommand
         {
-            get { return productcolors; }
+            get
+            {
+                if (_IncrementCommand == null)
+                {
+                    _IncrementCommand = new Command(IncrementOrder);
+                }
+                return _IncrementCommand;
+            }
+        }
+        public int TotalQuanity
+        {
+            get
+            {
+                return _TotalQuanity;
+            }
             set
             {
-                productcolors = value;
+                _TotalQuanity = value;
+                if (_TotalQuanity < 0)
+                    _TotalQuanity = 0;
+                if (_TotalQuanity > 10)
+                    _TotalQuanity -= 1;
                 OnPropertyChanged();
             }
         }
-        //Insertado datos a ProdColor
-        private ObservableCollection<ProdColor> GetProductColor()
+        public SingleItemViewModel()
         {
-            return new ObservableCollection<ProdColor>
-            {
-                new ProdColor{ Name="Sky Blue", ColorOption = ColorConverters.FromHex("#7485C1") },
-                new ProdColor{ Name="Rose Gold", ColorOption = ColorConverters.FromHex("#C9A19C") }
-            };
-        }
-        //Metodo de AddToCartCommand
-        private void CartPage(object obj)
-        {
-            App.Current.MainPage.Navigation.PushAsync(new CartPage());
+            TotalQuanity = 0;
+            DecrementOrder();
+            IncrementOrder();
         }
         private void BackToPage(object obj)
         {
             App.Current.MainPage = new AppShell();
+        }
+        private void DecrementOrder()
+        {
+            TotalQuanity--;
+        }
+        private void IncrementOrder()
+        {
+            TotalQuanity++;
         }
     }
 }

@@ -4,8 +4,7 @@
              x:Class="AppMarketShop.Views.SearchPage"
              xmlns:renderers="clr-namespace:AppMarketShop.Renderers"
              BackgroundColor="#F5F5F8"
-             NavigationPage.HasNavigationBar="False"
-             Shell.TabBarIsVisible="False">
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <!--Definimos el Grid con 3 filas y 2 columnas-->
         <Grid RowDefinitions="Auto,Auto,Auto" 
@@ -17,30 +16,6 @@
                          HorizontalOptions="Start"
                          BackgroundColor="Transparent"
                          Command="{Binding BackCommand}"/>
-            <!--Buscador usando SfAutoComplete-->
-            <!--<Frame Grid.Row="0"
-                   Grid.Column="1"
-                   Padding="0"
-                   HeightRequest="55"
-                   WidthRequest="330"
-                   CornerRadius="30"
-                   BackgroundColor="White"
-                   HorizontalOptions="Start">
-                <Grid ColumnDefinitions="Auto,Auto"
-                          Margin="20,0">
-                    <Image HeightRequest="20" 
-                               WidthRequest="20" 
-                               Source="Search.png"/>
-                    <renderers:BorderlessEntry x:Name="SearchTxt" 
-                                               Grid.Column="1" 
-                                               Grid.ColumnSpan="2"
-                                               Margin="5"
-                                               HorizontalOptions="FillAndExpand"
-                                               VerticalOptions="Center"
-                                               Placeholder="Search"/>
-                </Grid>
-            </Frame>-->
-            <!--Resultado de Busqueda-->
             <Frame Grid.Row="0"
                    Grid.Column="1"
                    Padding="0"
@@ -54,17 +29,9 @@
                     SearchCommand="{Binding SearchCommand}"
                     Text="{Binding Filter}"
                     BackgroundColor="Transparent">
-                    
+
                 </SearchBar>
             </Frame>
-            <!--<Label Grid.Row="1"
-                   Grid.ColumnSpan="2"
-                   Text="Found  4 results"
-                   TextColor="Black"
-                   FontSize="28"
-                   HorizontalTextAlignment="Center"
-                   Padding="0,35,0,20"/>-->
-            <!--Lista de productos-->
             <CollectionView x:Name="CollectionProduct" 
                             Grid.Column="0" 
                             Grid.Row="2" 

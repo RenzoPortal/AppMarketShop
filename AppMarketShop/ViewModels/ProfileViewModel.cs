@@ -12,6 +12,7 @@ namespace AppMarketShop.ViewModels
     {
         public Command _BackCommand;
         public Command _SignOutCommand;
+        public Command _OrderHistoryCommand;
         public ICommand BackCommand
         {
             get
@@ -34,6 +35,17 @@ namespace AppMarketShop.ViewModels
                 return _SignOutCommand;
             }
         }
+        public ICommand OrderHistoryCommand
+        {
+            get
+            {
+                if (_OrderHistoryCommand == null)
+                {
+                    _OrderHistoryCommand = new Command(OrderHistoryPage);
+                }
+                return _OrderHistoryCommand;
+            }
+        }
         private void BackToPage(object obj)
         {
             App.Current.MainPage = new AppShell();
@@ -42,6 +54,10 @@ namespace AppMarketShop.ViewModels
         {
             Preferences.Remove("Email");
             App.Current.MainPage.Navigation.PushAsync(new LoginPage());
+        }
+        private void OrderHistoryPage(object obj)
+        {
+            App.Current.MainPage.Navigation.PushAsync(new OrdersPage());
         }
     }
 }

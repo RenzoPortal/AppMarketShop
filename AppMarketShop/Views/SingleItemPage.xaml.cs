@@ -40,11 +40,11 @@ namespace AppMarketShop.Views
             bool success = pedido.AddToCart(id, image, nombre, precio, total, cantidad);
             if (success)
             {
-                DisplayAlert("Success", "Se agrego al carrito", "Ok");
+                DisplayAlert("Successful", "Added to shopping cart", "Ok");
             }
             else
             {
-                DisplayAlert("Error", "No se pudo agrego al carrito", "Ok");
+                DisplayAlert("Error", "Could not add to cart", "Ok");
             }
         }
     }

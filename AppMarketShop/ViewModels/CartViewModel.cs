@@ -26,20 +26,8 @@ namespace AppMarketShop.ViewModels
             }
         }
         //Comandos para llevarnos CheckoutPage 
-        public Command _CheckOutCommand;
         public Command _BackCommand;
 
-        public ICommand CheckOutCommand
-        {
-            get
-            {
-                if (_CheckOutCommand == null)
-                {
-                    _CheckOutCommand = new Command(CheckoutPage);
-                }
-                return _CheckOutCommand;
-            }
-        }
         public ICommand BackCommand
         {
             get
@@ -94,10 +82,6 @@ namespace AppMarketShop.ViewModels
         private void BackToPage(object obj)
         {
             App.Current.MainPage = new AppShell();
-        }
-        private void CheckoutPage(object obj)
-        {
-            App.Current.MainPage.Navigation.PushAsync(new CheckoutPage());
         }
     }
 }

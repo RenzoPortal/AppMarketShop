@@ -23,12 +23,13 @@
                HorizontalOptions="CenterAndExpand"/>
         <!--Lista de productos-->
         <CollectionView x:Name="CollectionProductCate" 
-                            Grid.Column="0" 
-                            Grid.Row="2" 
-                            Grid.ColumnSpan="2"
-                            VerticalScrollBarVisibility="Never" 
-                            SelectionMode="Single"
-                            VerticalOptions="StartAndExpand">
+                        Grid.Column="0" 
+                        Grid.Row="2" 
+                        Grid.ColumnSpan="2"
+                        VerticalScrollBarVisibility="Never" 
+                        SelectionMode="Single"
+                        SelectionChanged="CollectionProductCate_SelectionChanged"
+                        VerticalOptions="StartAndExpand">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
                                      Span="2" />

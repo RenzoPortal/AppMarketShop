@@ -13,7 +13,7 @@
             <!--Definimos el Grid con 5 filas y 1 columna-->
             <Grid ColumnDefinitions="Auto" 
                   RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
-                  Padding="30,40,0,0">
+                  Padding="30,5,0,0">
                 <!--Titulo-->
                 <Label Grid.Row="1"
                        Text="Order online&#10;collect in store"

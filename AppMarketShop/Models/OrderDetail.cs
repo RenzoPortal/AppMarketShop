@@ -12,7 +12,7 @@ namespace AppMarketShop.Models
         public int Id { get; set; }
         [ForeignKey(typeof(Product))]
         public int ProductId { get; set; }
-        [ForeignKey(typeof(Order))]
+        [ForeignKey(typeof(Orders))]
         public int OrderId { get; set; }
         public string Description { get; set; }
         public int Quantity { get; set; }

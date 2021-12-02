@@ -24,5 +24,17 @@ namespace AppMarketShop.Views
 
             namecatetxt.Text = name;
         }
+
+        private void CollectionProductCate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var c = e.CurrentSelection.First();
+            Models.Product model = e.CurrentSelection.FirstOrDefault() as Models.Product;
+            string id = model.Id.ToString();
+            string nombre = model.Name;
+            string imagen = model.Image;
+            string descrip = model.Description;
+            string precio = model.Price.ToString();
+            Navigation.PushModalAsync(new SingleItemPage(id, nombre, imagen, descrip, precio));
+        }
     }
 }
